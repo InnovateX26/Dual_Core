@@ -1,0 +1,64 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/sidebar') %>
+<% locals.activeMenu = 'marketplace' %>
+
+<div class="bg-decoration">
+  <div class="circle circle-1"></div>
+</div>
+
+<main class="main-content">
+  <div class="page-header">
+    <h1><%= listing.crop_name %></h1>
+    <p>Listed by <%= listing.farmer_name %></p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="listing-image" style="height:300px;">
+        <% if (listing.image_path) { %>
+          <img src="<%= listing.image_path %>" alt="<%= listing.crop_name %>" style="width:100%;height:100%;object-fit:cover;">
+        <% } else { %>
+          🌾
+        <% } %>
+      </div>
+      <div class="card-body">
+        <div class="listing-price" style="font-size:28px;">₹<%= listing.price %>/<%= listing.unit %></div>
+        <p style="color:var(--text-muted);margin-top:8px;"><%= listing.description || 'No description provided.' %></p>
+      </div>
+    </div>
+
+    <div>
+      <div class="card mb-2">
+        <div class="card-header"><h3>📦 Listing Details</h3></div>
+        <div class="card-body">
+          <table>
+            <tr><td style="font-weight:600;">Quantity</td><td><%= listing.quantity %> <%= listing.unit %></td></tr>
+            <tr><td style="font-weight:600;">Price per <%= listing.unit %></td><td>₹<%= listing.price %></td></tr>
+            <tr><td style="font-weight:600;">Total Value</td><td style="font-weight:700;color:var(--primary);">₹<%= (listing.price * listing.quantity).toFixed(2) %></td></tr>
+            <tr><td style="font-weight:600;">Status</td><td><span class="badge badge-success"><%= listing.status %></span></td></tr>
+            <tr><td style="font-weight:600;">Listed On</td><td><%= new Date(listing.created_at).toLocaleDateString() %></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3>👤 Farmer Contact</h3></div>
+        <div class="card-body">
+          <table>
+            <tr><td style="font-weight:600;">Name</td><td><%= listing.farmer_name %></td></tr>
+            <% if (listing.farmer_phone) { %>
+            <tr><td style="font-weight:600;">Phone</td><td><a href="tel:<%= listing.farmer_phone %>" style="color:var(--primary);font-weight:600;"><%= listing.farmer_phone %></a></td></tr>
+            <% } %>
+            <tr><td style="font-weight:600;">Email</td><td><%= listing.farmer_email %></td></tr>
+            <tr><td style="font-weight:600;">Location</td><td><%= listing.location || listing.farmer_location || 'India' %></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <a href="/marketplace" class="btn btn-secondary mt-2">← Back to Marketplace</a>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>

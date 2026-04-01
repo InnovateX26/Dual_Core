@@ -1,0 +1,138 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/sidebar') %>
+<% locals.activeMenu = 'predictions' %>
+
+<div class="bg-decoration"><div class="circle circle-1"></div><div class="circle circle-2"></div></div>
+
+<main class="main-content">
+  <div class="page-header">
+    <h1><i class="fas fa-chart-line" style="color:var(--primary);"></i> Predictions & Risk</h1>
+    <p>ML-powered risk scoring, yield prediction, and price forecasting.</p>
+  </div>
+
+  <div class="prediction-tabs">
+    <button class="prediction-tab active" onclick="switchTab('risk')"><i class="fas fa-shield-alt"></i> Risk Score</button>
+    <button class="prediction-tab" onclick="switchTab('yield')"><i class="fas fa-seedling"></i> Yield</button>
+    <button class="prediction-tab" onclick="switchTab('price')"><i class="fas fa-rupee-sign"></i> Price</button>
+  </div>
+
+  <!-- Risk Panel -->
+  <div class="prediction-panel active" id="panel-risk">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-shield-alt" style="color:var(--warning);"></i> Calculate Farm Risk</h3></div>
+        <div class="card-body">
+          <form id="riskForm">
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">Crop Type</label><select name="crop_type" class="form-control" required><option value="">Select</option><option value="rice">Rice</option><option value="wheat">Wheat</option><option value="tomato">Tomato</option><option value="potato">Potato</option><option value="maize">Maize</option><option value="cotton">Cotton</option><option value="sugarcane">Sugarcane</option></select></div>
+              <div class="form-group"><label class="form-label">Temperature (°C)</label><input type="number" name="temperature" class="form-control" placeholder="32" required></div>
+              <div class="form-group"><label class="form-label">Humidity (%)</label><input type="number" name="humidity" class="form-control" placeholder="70" required></div>
+              <div class="form-group"><label class="form-label">Rainfall (mm)</label><input type="number" name="rainfall" class="form-control" placeholder="150" required></div>
+              <div class="form-group"><label class="form-label">Soil pH</label><input type="number" name="soil_ph" step="0.1" class="form-control" placeholder="6.5" required></div>
+              <div class="form-group"><label class="form-label">Soil Moisture (%)</label><input type="number" name="soil_moisture" class="form-control" placeholder="45" required></div>
+              <div class="form-group"><label class="form-label">Disease Severity (0-10)</label><input type="number" name="disease_severity" min="0" max="10" class="form-control" placeholder="3" required></div>
+              <div class="form-group"><label class="form-label">Market Price (₹/kg)</label><input type="number" name="market_price" class="form-control" placeholder="25" required></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100"><i class="fas fa-calculator"></i> Calculate Risk</button>
+          </form>
+        </div>
+      </div>
+      <div class="card"><div class="card-header"><h3><i class="fas fa-chart-pie"></i> Result</h3></div><div class="card-body"><div id="riskResult" class="empty-state"><i class="fas fa-chart-pie" style="font-size:36px;color:var(--text-muted);opacity:0.4;"></i><h3>Fill the form</h3><p>Enter farm parameters to get risk assessment.</p></div></div></div>
+    </div>
+  </div>
+
+  <!-- Yield Panel -->
+  <div class="prediction-panel" id="panel-yield">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-seedling" style="color:var(--primary);"></i> Predict Yield</h3></div>
+        <div class="card-body">
+          <form id="yieldForm">
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">Crop Type</label><select name="crop_type" class="form-control" required><option value="">Select</option><option value="rice">Rice</option><option value="wheat">Wheat</option><option value="tomato">Tomato</option><option value="potato">Potato</option><option value="maize">Maize</option><option value="cotton">Cotton</option><option value="sugarcane">Sugarcane</option></select></div>
+              <div class="form-group"><label class="form-label">Area (hectares)</label><input type="number" name="area" step="0.1" class="form-control" placeholder="2.5" required></div>
+              <div class="form-group"><label class="form-label">Soil Quality</label><select name="soil_quality" class="form-control" required><option value="poor">Poor</option><option value="average">Average</option><option value="good" selected>Good</option><option value="excellent">Excellent</option></select></div>
+              <div class="form-group"><label class="form-label">Rainfall (mm)</label><input type="number" name="rainfall" class="form-control" placeholder="200" required></div>
+              <div class="form-group"><label class="form-label">Season</label><select name="season" class="form-control" required><option value="kharif">Kharif</option><option value="rabi">Rabi</option><option value="zaid">Zaid</option></select></div>
+              <div class="form-group"><label class="form-label">Temperature (°C)</label><input type="number" name="temperature" class="form-control" placeholder="28" required></div>
+              <div class="form-group"><label class="form-label">Humidity (%)</label><input type="number" name="humidity" class="form-control" placeholder="65" required></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100"><i class="fas fa-seedling"></i> Predict Yield</button>
+          </form>
+        </div>
+      </div>
+      <div class="card"><div class="card-header"><h3><i class="fas fa-chart-bar"></i> Result</h3></div><div class="card-body"><div id="yieldResult" class="empty-state"><i class="fas fa-seedling" style="font-size:36px;color:var(--text-muted);opacity:0.4;"></i><h3>Fill the form</h3><p>Enter farm details for yield prediction.</p></div></div></div>
+    </div>
+  </div>
+
+  <!-- Price Panel -->
+  <div class="prediction-panel" id="panel-price">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-rupee-sign" style="color:var(--info);"></i> Forecast Price</h3></div>
+        <div class="card-body">
+          <form id="priceForm">
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">Crop Type</label><select name="crop_type" class="form-control" required><option value="">Select</option><option value="rice">Rice</option><option value="wheat">Wheat</option><option value="tomato">Tomato</option><option value="potato">Potato</option><option value="maize">Maize</option><option value="cotton">Cotton</option><option value="sugarcane">Sugarcane</option></select></div>
+              <div class="form-group"><label class="form-label">Current Price (₹/kg)</label><input type="number" name="current_price" class="form-control" placeholder="30" required></div>
+              <div class="form-group"><label class="form-label">Season</label><select name="season" class="form-control" required><option value="kharif">Kharif</option><option value="rabi">Rabi</option><option value="zaid">Zaid</option></select></div>
+              <div class="form-group"><label class="form-label">Demand (1-10)</label><input type="number" name="demand_index" min="1" max="10" class="form-control" placeholder="7" required></div>
+              <div class="form-group"><label class="form-label">Quantity (kg)</label><input type="number" name="quantity" class="form-control" placeholder="500" required></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100"><i class="fas fa-chart-line"></i> Forecast Price</button>
+          </form>
+        </div>
+      </div>
+      <div class="card"><div class="card-header"><h3><i class="fas fa-rupee-sign"></i> Forecast</h3></div><div class="card-body"><div id="priceResult" class="empty-state"><i class="fas fa-rupee-sign" style="font-size:36px;color:var(--text-muted);opacity:0.4;"></i><h3>Fill the form</h3><p>Enter market details for price forecast.</p></div></div></div>
+    </div>
+  </div>
+
+  <% if (riskHistory.length > 0) { %>
+  <div class="card mt-3">
+    <div class="card-header"><h3><i class="fas fa-history"></i> Risk History</h3></div>
+    <div class="card-body"><div class="table-container"><table><thead><tr><th>Date</th><th>Crop</th><th>Score</th><th>Level</th></tr></thead><tbody>
+      <% riskHistory.forEach(r => { %><tr><td><%= new Date(r.created_at).toLocaleDateString() %></td><td><%= r.crop_type %></td><td><strong><%= Math.round(r.risk_score) %>%</strong></td><td><span class="badge <%= r.risk_level === 'Low' ? 'badge-success' : r.risk_level === 'Medium' ? 'badge-warning' : 'badge-danger' %>"><%= r.risk_level %></span></td></tr><% }) %>
+    </tbody></table></div></div>
+  </div>
+  <% } %>
+</main>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.prediction-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.prediction-panel').forEach(p => p.classList.remove('active'));
+  event.target.closest('.prediction-tab').classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+async function submitPrediction(formId, endpoint, resultId, renderFn) {
+  const form = document.getElementById(formId);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
+    const rd = document.getElementById(resultId);
+    rd.innerHTML = '<div class="text-center"><div class="spinner" style="margin:20px auto;"></div><p class="text-muted">Processing...</p></div>';
+    try {
+      const res = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) });
+      const json = await res.json();
+      if (json.success) { rd.innerHTML = renderFn(json.data); } else { rd.innerHTML = '<div class="alert alert-error">' + json.error + '</div>'; }
+    } catch(err) { rd.innerHTML = '<div class="alert alert-error">Service unavailable. Ensure ML service is running.</div>'; }
+  });
+}
+
+submitPrediction('riskForm', '/predictions/risk', 'riskResult', (d) => {
+  const color = d.risk_score < 40 ? 'var(--primary)' : d.risk_score < 70 ? 'var(--warning)' : 'var(--danger)';
+  return `<div style="text-align:center;padding:16px;"><div style="font-size:56px;font-weight:900;color:${color};">${Math.round(d.risk_score)}%</div><div style="font-size:16px;font-weight:700;color:${color};margin-bottom:16px;">Risk: ${d.risk_level}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div class="glass" style="padding:10px;border-radius:var(--radius-sm);text-align:center;"><div style="font-size:10px;color:var(--text-muted);">WEATHER</div><div style="font-weight:700;">${(d.factors?.weather||0).toFixed(1)}</div></div><div class="glass" style="padding:10px;border-radius:var(--radius-sm);text-align:center;"><div style="font-size:10px;color:var(--text-muted);">SOIL</div><div style="font-weight:700;">${(d.factors?.soil||0).toFixed(1)}</div></div><div class="glass" style="padding:10px;border-radius:var(--radius-sm);text-align:center;"><div style="font-size:10px;color:var(--text-muted);">DISEASE</div><div style="font-weight:700;">${(d.factors?.disease||0).toFixed(1)}</div></div><div class="glass" style="padding:10px;border-radius:var(--radius-sm);text-align:center;"><div style="font-size:10px;color:var(--text-muted);">MARKET</div><div style="font-weight:700;">${(d.factors?.market||0).toFixed(1)}</div></div></div>${d.recommendations ? '<div style="margin-top:12px;text-align:left;padding:10px;background:var(--primary-dim);border-radius:var(--radius-sm);font-size:13px;">' + (Array.isArray(d.recommendations)?d.recommendations.join('<br>'):d.recommendations) + '</div>':''}</div>`;
+});
+
+submitPrediction('yieldForm', '/predictions/yield', 'yieldResult', (d) => {
+  return `<div style="text-align:center;padding:16px;"><div style="font-size:48px;font-weight:900;color:var(--primary);">${d.predicted_yield.toFixed(1)}</div><div style="font-size:14px;color:var(--text-muted);margin-bottom:12px;">Quintals</div>${d.yield_per_hectare?'<p style="color:var(--text-secondary);font-size:13px;">Per hectare: <strong>'+d.yield_per_hectare.toFixed(1)+' q</strong></p>':''}${d.recommendations?'<div style="margin-top:12px;text-align:left;padding:10px;background:var(--primary-dim);border-radius:var(--radius-sm);font-size:13px;">'+(Array.isArray(d.recommendations)?d.recommendations.join('<br>'):d.recommendations)+'</div>':''}</div>`;
+});
+
+submitPrediction('priceForm', '/predictions/price', 'priceResult', (d) => {
+  return `<div style="text-align:center;padding:16px;"><div style="font-size:48px;font-weight:900;color:var(--primary);">₹${d.predicted_price.toFixed(1)}</div><div style="font-size:14px;color:var(--text-muted);margin-bottom:12px;">Predicted / kg</div>${d.price_trend?'<p style="color:var(--text-secondary);font-size:14px;">Trend: <strong>'+d.price_trend+'</strong></p>':''}${d.best_sell_window?'<p style="color:var(--primary);font-weight:600;font-size:13px;margin-top:8px;"><i class="fas fa-clock"></i> '+d.best_sell_window+'</p>':''}${d.total_value?'<p style="color:var(--text-muted);font-size:13px;margin-top:8px;">Total value: <strong>₹'+d.total_value.toFixed(0)+'</strong></p>':''}</div>`;
+});
+</script>
+
+<%- include('partials/footer') %>

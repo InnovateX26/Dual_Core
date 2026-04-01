@@ -1,0 +1,112 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/sidebar') %>
+<% locals.activeMenu = 'equipment' %>
+
+<div class="bg-decoration"><div class="circle circle-1"></div><div class="circle circle-2"></div></div>
+
+<main class="main-content">
+  <div class="page-header">
+    <h1><i class="fas fa-tractor" style="color:var(--primary);"></i> Equipment Rental / उपकरण किराया</h1>
+    <p>Rent farm equipment from nearby farmers • पास के किसानों से उपकरण किराये पर लें</p>
+  </div>
+
+  <!-- Filters -->
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-body" style="padding:16px;">
+      <form method="GET" action="/equipment" style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;">
+        <div class="form-group" style="flex:1;min-width:140px;margin:0;">
+          <label class="form-label" style="font-size:11px;">Category / श्रेणी</label>
+          <select name="category" class="form-control">
+            <option value="all" <%= filters.category === 'all' ? 'selected' : '' %>>All / सभी</option>
+            <% categories.forEach(c => { %>
+              <option value="<%= c.value %>" <%= filters.category === c.value ? 'selected' : '' %>><%= c.label %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="form-group" style="flex:1;min-width:140px;margin:0;">
+          <label class="form-label" style="font-size:11px;">Search / खोजें</label>
+          <input type="text" name="search" class="form-control" placeholder="Tractor, Mahindra..." value="<%= filters.search %>">
+        </div>
+        <div class="form-group" style="flex:0.5;min-width:100px;margin:0;">
+          <label class="form-label" style="font-size:11px;">Distance (km)</label>
+          <input type="number" name="max_distance" class="form-control" value="<%= filters.max_distance %>" min="5" max="200">
+        </div>
+        <button type="submit" class="btn btn-primary" style="height:42px;"><i class="fas fa-search"></i> Search</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div style="display:flex;gap:12px;margin-bottom:20px;">
+    <div class="glass" style="padding:10px 16px;border-radius:var(--radius-sm);font-size:13px;">
+      <i class="fas fa-tractor" style="color:var(--primary);"></i> <strong><%= total %></strong> equipment available
+    </div>
+    <a href="/equipment/my-equipment" class="btn btn-primary" style="margin-left:auto;font-size:13px;">
+      <i class="fas fa-plus"></i> List Your Equipment
+    </a>
+  </div>
+
+  <!-- Equipment Grid -->
+  <% if (equipment.length > 0) { %>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;">
+      <% equipment.forEach(e => { %>
+        <a href="/equipment/<%= e.id %>" class="card" style="text-decoration:none;color:inherit;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <% if (e.image_path) { %>
+            <img src="<%= e.image_path %>" alt="<%= e.name %>" style="width:100%;height:180px;object-fit:cover;border-radius:var(--radius) var(--radius) 0 0;">
+          <% } else { %>
+            <div style="width:100%;height:180px;background:linear-gradient(135deg,var(--primary-dim),var(--bg-glass));display:flex;align-items:center;justify-content:center;border-radius:var(--radius) var(--radius) 0 0;">
+              <i class="fas fa-tractor" style="font-size:48px;color:var(--primary);opacity:0.3;"></i>
+            </div>
+          <% } %>
+          <div style="padding:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:start;">
+              <div>
+                <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;color:var(--text-bright);"><%= e.name %></h3>
+                <span class="badge badge-info" style="font-size:10px;"><%= e.category %></span>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:20px;font-weight:900;color:var(--primary);">₹<%= e.daily_rate %></div>
+                <div style="font-size:10px;color:var(--text-muted);">/ day</div>
+              </div>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:8px;align-items:center;font-size:12px;color:var(--text-muted);">
+              <% if (e.brand) { %><span><i class="fas fa-tag"></i> <%= e.brand %></span><% } %>
+              <% if (e.condition_rating) { %><span>• <%= e.condition_rating %></span><% } %>
+              <% if (e.distance_km) { %><span style="margin-left:auto;color:var(--primary);font-weight:600;"><i class="fas fa-map-marker-alt"></i> <%= e.distance_km.toFixed(1) %> km</span><% } %>
+            </div>
+            <div style="margin-top:8px;display:flex;align-items:center;gap:8px;font-size:12px;">
+              <% if (e.avg_rating > 0) { %>
+                <span style="color:var(--warning);"><i class="fas fa-star"></i> <%= e.avg_rating.toFixed(1) %></span>
+              <% } %>
+              <span style="color:var(--text-muted);"><%= e.total_bookings %> rentals</span>
+              <span style="margin-left:auto;font-size:11px;color:var(--text-muted);"><%= e.owner_name %></span>
+            </div>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+
+    <!-- Pagination -->
+    <% if (totalPages > 1) { %>
+      <div style="display:flex;justify-content:center;gap:8px;margin-top:24px;">
+        <% for (let i = 1; i <= totalPages; i++) { %>
+          <a href="/equipment?category=<%= filters.category %>&search=<%= filters.search %>&max_distance=<%= filters.max_distance %>&page=<%= i %>"
+             class="btn <%= i === currentPage ? 'btn-primary' : '' %>" style="min-width:36px;padding:8px;">
+            <%= i %>
+          </a>
+        <% } %>
+      </div>
+    <% } %>
+  <% } else { %>
+    <div class="card">
+      <div class="card-body empty-state">
+        <i class="fas fa-tractor" style="font-size:48px;color:var(--text-muted);opacity:0.3;"></i>
+        <h3>No equipment found / कोई उपकरण नहीं मिला</h3>
+        <p>Try changing your filters or <a href="/equipment/my-equipment" style="color:var(--primary);">list your equipment</a> to get started!</p>
+      </div>
+    </div>
+  <% } %>
+</main>
+
+<%- include('partials/footer') %>

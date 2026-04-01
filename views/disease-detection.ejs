@@ -1,0 +1,85 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/sidebar') %>
+<% locals.activeMenu = 'disease' %>
+
+<div class="bg-decoration"><div class="circle circle-1"></div><div class="circle circle-2"></div></div>
+
+<main class="main-content">
+  <div class="page-header">
+    <h1><i class="fas fa-leaf" style="color:var(--primary);"></i> Disease Detection</h1>
+    <p>Upload a crop image for AI-powered disease diagnosis</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header"><h3><i class="fas fa-cloud-upload-alt"></i> Upload Crop Image</h3></div>
+      <div class="card-body">
+        <form action="/disease/detect" method="POST" enctype="multipart/form-data" id="uploadForm">
+          <div id="dropZone" style="border:2px dashed var(--border-glass);border-radius:var(--radius);padding:48px 24px;text-align:center;cursor:pointer;transition:var(--transition);" onclick="document.getElementById('fileInput').click()">
+            <div id="previewArea">
+              <i class="fas fa-cloud-upload-alt" style="font-size:48px;color:var(--primary);opacity:0.5;"></i>
+              <p style="margin-top:12px;color:var(--text-muted);">Click or drag & drop an image here</p>
+              <p style="font-size:12px;color:var(--text-muted);">Supports: JPG, PNG, WEBP (max 10MB)</p>
+            </div>
+          </div>
+          <input type="file" name="image" id="fileInput" accept="image/*" style="display:none;" onchange="previewImage(this)" required>
+          <button type="submit" class="btn btn-primary btn-lg w-100" style="margin-top:16px;" id="submitBtn" disabled>
+            <i class="fas fa-microscope"></i> Analyze with AI
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3><i class="fas fa-history"></i> Recent Scans</h3></div>
+      <div class="card-body">
+        <% if (history.length > 0) { %>
+          <% history.forEach(scan => { %>
+            <a href="/disease/scan/<%= scan.id %>" style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:var(--radius-sm);transition:var(--transition);margin-bottom:8px;color:var(--text);" onmouseover="this.style.background='var(--bg-glass)'" onmouseout="this.style.background='transparent'">
+              <img src="<%= scan.image_path %>" style="width:44px;height:44px;border-radius:var(--radius-sm);object-fit:cover;" alt="scan">
+              <div style="flex:1;">
+                <div style="font-weight:600;font-size:13px;color:var(--text-bright);"><%= scan.disease_name %></div>
+                <div style="font-size:11px;color:var(--text-muted);"><%= scan.crop_type %> &bull; <%= new Date(scan.created_at).toLocaleDateString() %></div>
+              </div>
+              <span class="badge <%= scan.confidence >= 0.8 ? 'badge-success' : scan.confidence >= 0.5 ? 'badge-warning' : 'badge-danger' %>">
+                <%= (scan.confidence * 100).toFixed(0) %>%
+              </span>
+            </a>
+          <% }) %>
+        <% } else { %>
+          <div class="empty-state">
+            <i class="fas fa-camera" style="font-size:36px;color:var(--text-muted);opacity:0.4;"></i>
+            <h3>No scans yet</h3>
+            <p>Upload your first crop image to get started</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+function previewImage(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      document.getElementById('previewArea').innerHTML = `<img src="${e.target.result}" style="max-height:240px;border-radius:var(--radius-sm);margin:0 auto;">`;
+      document.getElementById('submitBtn').disabled = false;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+// Drag & drop
+const dz = document.getElementById('dropZone');
+dz.addEventListener('dragover', (e) => { e.preventDefault(); dz.style.borderColor = 'var(--primary)'; dz.style.background = 'var(--primary-dim)'; });
+dz.addEventListener('dragleave', () => { dz.style.borderColor = 'var(--border-glass)'; dz.style.background = 'transparent'; });
+dz.addEventListener('drop', (e) => { e.preventDefault(); dz.style.borderColor = 'var(--border-glass)'; dz.style.background = 'transparent'; document.getElementById('fileInput').files = e.dataTransfer.files; previewImage(document.getElementById('fileInput')); });
+// Loading state
+document.getElementById('uploadForm').addEventListener('submit', () => {
+  document.getElementById('submitBtn').innerHTML = '<div class="spinner" style="width:20px;height:20px;border-width:2px;margin:0 auto;"></div> Analyzing...';
+  document.getElementById('submitBtn').disabled = true;
+});
+</script>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,202 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/sidebar') %>
+<% locals.activeMenu = 'dashboard' %>
+
+<div class="bg-decoration">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+  <div class="circle circle-3"></div>
+</div>
+
+<main class="main-content">
+  <div class="feed-layout">
+    <!-- LEFT: Profile & Quick Actions -->
+    <div class="feed-left">
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-body" style="text-align:center;">
+          <div class="user-avatar" style="width:64px;height:64px;font-size:24px;margin:0 auto 12px;">
+            <%= user.name.charAt(0).toUpperCase() %>
+          </div>
+          <h3 style="margin-bottom:4px;"><%= user.name %></h3>
+          <p class="text-muted" style="font-size:12px;"><i class="fas fa-seedling"></i> Smart Farmer</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-bolt"></i> Quick Actions</h3></div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:8px;">
+          <a href="/disease" class="btn btn-primary w-100"><i class="fas fa-camera"></i> Scan Disease</a>
+          <a href="/predictions" class="btn btn-secondary w-100"><i class="fas fa-chart-line"></i> Risk Analysis</a>
+          <a href="/chat" class="btn btn-secondary w-100"><i class="fas fa-robot"></i> Ask AI</a>
+          <a href="/marketplace" class="btn btn-accent w-100"><i class="fas fa-store"></i> Marketplace</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER: Feed -->
+    <div class="feed-container">
+      <div class="page-header">
+        <h1><i class="fas fa-stream"></i> Your Feed</h1>
+        <p>Smart farming insights powered by AI</p>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-microscope" style="color:var(--primary);"></i></div>
+          <div class="stat-value"><%= scanCount %></div>
+          <div class="stat-label">Scans</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-shield-alt" style="color:var(--warning);"></i></div>
+          <div class="stat-value"><%= latestRisk ? Math.round(latestRisk.risk_score) + '%' : 'N/A' %></div>
+          <div class="stat-label">Risk Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-box" style="color:var(--info);"></i></div>
+          <div class="stat-value"><%= userListings.length %></div>
+          <div class="stat-label">Listings</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-seedling" style="color:var(--primary);"></i></div>
+          <div class="stat-value"><%= yieldPredictions.length %></div>
+          <div class="stat-label">Predictions</div>
+        </div>
+      </div>
+
+      <!-- Feed Cards -->
+      <% if (feed.length > 0) { %>
+        <% feed.forEach((item, idx) => { %>
+          <% if (item.type === 'disease') { %>
+            <!-- Disease Scan Card -->
+            <div class="feed-card" style="animation-delay:<%= idx * 0.1 %>s;">
+              <div class="feed-card-header">
+                <div class="feed-card-avatar disease"><i class="fas fa-virus"></i></div>
+                <div class="feed-card-meta">
+                  <div class="title">Disease Detection</div>
+                  <div class="subtitle"><i class="fas fa-clock"></i> <%= new Date(item.data.created_at).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'}) %></div>
+                </div>
+                <span class="badge <%= item.data.confidence >= 0.8 ? 'badge-success' : item.data.confidence >= 0.5 ? 'badge-warning' : 'badge-danger' %>">
+                  <%= (item.data.confidence * 100).toFixed(0) %>%
+                </span>
+              </div>
+              <% if (item.data.image_path) { %>
+                <img class="feed-card-image" src="<%= item.data.image_path %>" alt="Crop scan">
+              <% } %>
+              <div class="feed-card-body">
+                <p><strong style="color:var(--text-bright)"><%= item.data.disease_name %></strong> detected on <strong><%= item.data.crop_type %></strong></p>
+                <div class="confidence-bar"><div class="confidence-bar-fill" style="width:<%= (item.data.confidence * 100) %>%"></div></div>
+              </div>
+              <div class="feed-card-actions">
+                <button class="feed-action-btn"><i class="far fa-heart"></i> Like</button>
+                <button class="feed-action-btn"><i class="far fa-comment"></i> Details</button>
+                <button class="feed-action-btn"><i class="fas fa-share"></i> Share</button>
+              </div>
+            </div>
+
+          <% } else if (item.type === 'risk') { %>
+            <!-- Risk Score Card -->
+            <div class="feed-card" style="animation-delay:<%= idx * 0.1 %>s;">
+              <div class="feed-card-header">
+                <div class="feed-card-avatar risk"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="feed-card-meta">
+                  <div class="title">Farm Risk Assessment</div>
+                  <div class="subtitle"><i class="fas fa-clock"></i> <%= new Date(item.data.created_at).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'}) %></div>
+                </div>
+                <span class="badge <%= item.data.risk_level === 'Low' ? 'badge-success' : item.data.risk_level === 'Medium' ? 'badge-warning' : 'badge-danger' %>">
+                  <%= item.data.risk_level %>
+                </span>
+              </div>
+              <div class="feed-card-body">
+                <div style="text-align:center;padding:12px 0;">
+                  <div style="font-size:48px;font-weight:900;font-family:var(--font-display);color:<%= item.data.risk_score < 40 ? 'var(--primary)' : item.data.risk_score < 70 ? 'var(--warning)' : 'var(--danger)' %>;">
+                    <%= Math.round(item.data.risk_score) %>%
+                  </div>
+                  <div class="text-muted" style="font-size:13px;">Risk Score for <strong><%= item.data.crop_type %></strong></div>
+                </div>
+                <div class="feed-card-stats" style="padding:0;">
+                  <div class="feed-stat"><div><div class="text-muted" style="font-size:10px;">WEATHER</div><div class="val" style="font-weight:700;"><%= item.data.weather_factor || 0 %></div></div></div>
+                  <div class="feed-stat"><div><div class="text-muted" style="font-size:10px;">SOIL</div><div class="val" style="font-weight:700;"><%= item.data.soil_factor || 0 %></div></div></div>
+                  <div class="feed-stat"><div><div class="text-muted" style="font-size:10px;">DISEASE</div><div class="val" style="font-weight:700;"><%= item.data.disease_factor || 0 %></div></div></div>
+                  <div class="feed-stat"><div><div class="text-muted" style="font-size:10px;">MARKET</div><div class="val" style="font-weight:700;"><%= item.data.market_factor || 0 %></div></div></div>
+                </div>
+              </div>
+              <div class="feed-card-actions">
+                <button class="feed-action-btn"><i class="far fa-heart"></i> Like</button>
+                <button class="feed-action-btn"><i class="far fa-comment"></i> Details</button>
+                <button class="feed-action-btn"><i class="fas fa-share"></i> Share</button>
+              </div>
+            </div>
+
+          <% } else if (item.type === 'yield') { %>
+            <!-- Yield Prediction Card -->
+            <div class="feed-card" style="animation-delay:<%= idx * 0.1 %>s;">
+              <div class="feed-card-header">
+                <div class="feed-card-avatar yield"><i class="fas fa-seedling"></i></div>
+                <div class="feed-card-meta">
+                  <div class="title">Yield Prediction</div>
+                  <div class="subtitle"><i class="fas fa-clock"></i> <%= new Date(item.data.created_at).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'}) %></div>
+                </div>
+              </div>
+              <div class="feed-card-body">
+                <div style="text-align:center;padding:12px 0;">
+                  <div style="font-size:42px;font-weight:900;font-family:var(--font-display);color:var(--primary);">
+                    <%= item.data.predicted_yield ? item.data.predicted_yield.toFixed(1) : '0' %>
+                  </div>
+                  <div class="text-muted" style="font-size:13px;">Quintals — <strong><%= item.data.crop_type %></strong> (<%= item.data.area %> ha)</div>
+                </div>
+              </div>
+              <div class="feed-card-actions">
+                <button class="feed-action-btn"><i class="far fa-heart"></i> Like</button>
+                <button class="feed-action-btn"><i class="far fa-comment"></i> Details</button>
+                <button class="feed-action-btn"><i class="fas fa-share"></i> Share</button>
+              </div>
+            </div>
+          <% } %>
+        <% }) %>
+      <% } else { %>
+        <!-- Empty Feed -->
+        <div class="card">
+          <div class="empty-state">
+            <div class="empty-icon"><i class="fas fa-stream" style="font-size:48px;color:var(--primary);opacity:0.4;"></i></div>
+            <h3>Your feed is empty</h3>
+            <p>Start scanning crops, analyzing risks, or predicting yields to see insights here.</p>
+            <a href="/disease" class="btn btn-primary"><i class="fas fa-camera"></i> Scan Your First Crop</a>
+          </div>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- RIGHT: Weather + Tips -->
+    <div class="feed-right">
+      <div class="weather-widget" id="weatherWidget">
+        <div class="weather-icon" id="weatherIcon">🌤️</div>
+        <div class="weather-temp" id="weatherTemp">--°C</div>
+        <div class="weather-desc" id="weatherDesc">Loading weather...</div>
+        <div id="weatherCity" class="text-muted" style="font-size:12px;margin-top:4px;"></div>
+        <div class="weather-details" id="weatherDetails">
+          <div class="weather-detail"><div class="label">HUMIDITY</div><div class="val" id="weatherHum">--%</div></div>
+          <div class="weather-detail"><div class="label">WIND</div><div class="val" id="weatherWind">-- km/h</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-header"><h3><i class="fas fa-lightbulb" style="color:var(--warning);"></i> Farming Tips</h3></div>
+        <div class="card-body" style="font-size:13px;color:var(--text-secondary);line-height:1.8;">
+          <p><i class="fas fa-check-circle" style="color:var(--primary);"></i> Water crops early morning to reduce evaporation</p>
+          <p style="margin-top:8px;"><i class="fas fa-check-circle" style="color:var(--primary);"></i> Rotate crops each season to prevent soil depletion</p>
+          <p style="margin-top:8px;"><i class="fas fa-check-circle" style="color:var(--primary);"></i> Use neem oil as an organic pest deterrent</p>
+          <p style="margin-top:8px;"><i class="fas fa-check-circle" style="color:var(--primary);"></i> Check PM-KISAN eligibility for ₹6,000/year</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Floating Action Button -->
+<a href="/disease" class="fab" title="Scan Crop">
+  <i class="fas fa-camera"></i>
+</a>
+
+<%- include('partials/footer') %>

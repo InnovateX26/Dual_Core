@@ -1,0 +1,22 @@
+<% if (typeof user !== 'undefined' && user) { %>
+<nav class="bottom-nav">
+  <a href="/dashboard" class="<%= typeof activeMenu !== 'undefined' && activeMenu === 'dashboard' ? 'active' : '' %>">
+    <i class="fas fa-stream"></i> Feed
+  </a>
+  <a href="/disease" class="<%= typeof activeMenu !== 'undefined' && activeMenu === 'disease' ? 'active' : '' %>">
+    <i class="fas fa-leaf"></i> Scan
+  </a>
+  <a href="/chat" class="<%= typeof activeMenu !== 'undefined' && activeMenu === 'chat' ? 'active' : '' %>">
+    <i class="fas fa-robot"></i> AI
+  </a>
+  <a href="/marketplace" class="<%= typeof activeMenu !== 'undefined' && activeMenu === 'marketplace' ? 'active' : '' %>">
+    <i class="fas fa-store"></i> Market
+  </a>
+  <a href="/dashboard">
+    <i class="fas fa-user"></i> Profile
+  </a>
+</nav>
+<% } %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

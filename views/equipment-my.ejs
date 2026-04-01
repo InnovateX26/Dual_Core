@@ -1,0 +1,343 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/sidebar') %>
+<% locals.activeMenu = 'my-equipment' %>
+
+<div class="bg-decoration"><div class="circle circle-1"></div><div class="circle circle-2"></div></div>
+
+<main class="main-content">
+  <div class="page-header">
+    <h1><i class="fas fa-tools" style="color:var(--primary);"></i> My Equipment / मेरे उपकरण</h1>
+    <p>Manage your equipment, bookings & trust score</p>
+  </div>
+
+  <!-- Trust Score Banner -->
+  <div class="card" style="margin-bottom:20px;background:linear-gradient(135deg,<%= trust.trust_score >= 70 ? 'rgba(0,200,83,0.08)' : trust.trust_score >= 40 ? 'rgba(255,193,7,0.08)' : 'rgba(255,82,82,0.08)' %>,transparent);">
+    <div class="card-body" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div style="font-size:36px;font-weight:900;color:<%= trust.trust_score >= 70 ? 'var(--primary)' : trust.trust_score >= 40 ? 'var(--warning)' : 'var(--danger)' %>;"><%= Math.round(trust.trust_score) %></div>
+        <div style="font-size:11px;color:var(--text-muted);">Trust Score</div>
+      </div>
+      <div style="flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;">
+        <div class="glass" style="padding:8px 12px;border-radius:var(--radius-sm);text-align:center;">
+          <div style="font-weight:700;"><%= trust.completed_rentals || 0 %></div>
+          <div style="font-size:10px;color:var(--text-muted);">Completed</div>
+        </div>
+        <div class="glass" style="padding:8px 12px;border-radius:var(--radius-sm);text-align:center;">
+          <div style="font-weight:700;"><%= trust.total_rentals || 0 %></div>
+          <div style="font-size:10px;color:var(--text-muted);">Total</div>
+        </div>
+        <div class="glass" style="padding:8px 12px;border-radius:var(--radius-sm);text-align:center;">
+          <div style="font-weight:700;"><%= trust.avg_rating_received ? trust.avg_rating_received.toFixed(1) : '—' %></div>
+          <div style="font-size:10px;color:var(--text-muted);">Avg Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="prediction-tabs" style="margin-bottom:20px;">
+    <button class="prediction-tab active" onclick="switchEqTab('myEquip')"><i class="fas fa-tractor"></i> My Equipment (<%= myEquipment.length %>)</button>
+    <button class="prediction-tab" onclick="switchEqTab('incoming')">
+      <i class="fas fa-inbox"></i> Incoming Requests
+      <% const pendingCount = incomingBookings.filter(b => b.status === 'pending').length; %>
+      <% if (pendingCount > 0) { %><span class="badge badge-danger" style="font-size:10px;margin-left:4px;"><%= pendingCount %></span><% } %>
+    </button>
+    <button class="prediction-tab" onclick="switchEqTab('myBookings')"><i class="fas fa-calendar"></i> My Bookings (<%= myBookings.length %>)</button>
+    <button class="prediction-tab" onclick="switchEqTab('addNew')"><i class="fas fa-plus"></i> Add New</button>
+  </div>
+
+  <!-- Panel: My Equipment -->
+  <div class="eq-panel active" id="panel-myEquip">
+    <% if (myEquipment.length > 0) { %>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;">
+        <% myEquipment.forEach(e => { %>
+          <div class="card">
+            <div style="display:flex;gap:14px;padding:16px;">
+              <% if (e.image_path) { %>
+                <img src="<%= e.image_path %>" style="width:80px;height:80px;border-radius:var(--radius-sm);object-fit:cover;">
+              <% } else { %>
+                <div style="width:80px;height:80px;border-radius:var(--radius-sm);background:var(--primary-dim);display:flex;align-items:center;justify-content:center;">
+                  <i class="fas fa-tractor" style="color:var(--primary);font-size:24px;opacity:0.4;"></i>
+                </div>
+              <% } %>
+              <div style="flex:1;">
+                <h3 style="font-size:15px;font-weight:700;margin-bottom:4px;"><%= e.name %></h3>
+                <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;">
+                  <span class="badge badge-info" style="font-size:10px;"><%= e.category %></span>
+                  <span>₹<%= e.daily_rate %>/day</span>
+                  <span>• <%= e.total_bookings %> bookings</span>
+                </div>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                  <a href="/equipment/<%= e.id %>" class="btn" style="font-size:11px;padding:4px 10px;"><i class="fas fa-eye"></i> View</a>
+                  <form action="/equipment/<%= e.id %>/toggle" method="POST" style="display:inline;">
+                    <button type="submit" class="btn" style="font-size:11px;padding:4px 10px;">
+                      <i class="fas fa-<%= e.is_available ? 'pause' : 'play' %>"></i> <%= e.is_available ? 'Pause' : 'Activate' %>
+                    </button>
+                  </form>
+                  <form action="/equipment/<%= e.id %>/delete" method="POST" style="display:inline;" onsubmit="return confirm('Remove this equipment?')">
+                    <button type="submit" class="btn" style="font-size:11px;padding:4px 10px;color:var(--danger);"><i class="fas fa-trash"></i></button>
+                  </form>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span class="badge <%= e.is_available ? 'badge-success' : 'badge-warning' %>"><%= e.is_available ? 'Active' : 'Paused' %></span>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="card"><div class="card-body empty-state">
+        <i class="fas fa-tractor" style="font-size:36px;color:var(--text-muted);opacity:0.3;"></i>
+        <h3>No equipment listed yet</h3>
+        <p>Click "Add New" to list your first equipment!</p>
+      </div></div>
+    <% } %>
+  </div>
+
+  <!-- Panel: Incoming Booking Requests -->
+  <div class="eq-panel" id="panel-incoming" style="display:none;">
+    <% if (incomingBookings.length > 0) { %>
+      <% incomingBookings.forEach(b => { %>
+        <div class="card" style="margin-bottom:12px;">
+          <div class="card-body" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+            <div style="flex:1;min-width:200px;">
+              <h4 style="font-size:14px;font-weight:700;margin-bottom:4px;"><%= b.equipment_name %></h4>
+              <div style="font-size:12px;color:var(--text-muted);">
+                <strong><%= b.renter_name %></strong> wants to rent
+                <% if (b.renter_phone) { %> • <i class="fas fa-phone"></i> <%= b.renter_phone %><% } %>
+              </div>
+              <div style="font-size:12px;margin-top:4px;">
+                📅 <%= new Date(b.start_date).toLocaleDateString() %> → <%= new Date(b.end_date).toLocaleDateString() %>
+                (<%= b.total_days %> days) • <strong>₹<%= b.total_cost %></strong>
+              </div>
+              <% if (b.renter_notes) { %><div style="font-size:12px;color:var(--text-secondary);margin-top:4px;">📝 <%= b.renter_notes %></div><% } %>
+            </div>
+            <div style="display:flex;gap:6px;align-items:center;">
+              <span class="badge <%= b.status === 'pending' ? 'badge-warning' : b.status === 'approved' ? 'badge-success' : b.status === 'completed' ? 'badge-info' : 'badge-danger' %>"><%= b.status.toUpperCase() %></span>
+              <% if (b.status === 'pending') { %>
+                <form action="/equipment/booking/<%= b.id %>/approve" method="POST" style="display:inline;">
+                  <button class="btn btn-primary" style="font-size:12px;padding:6px 12px;"><i class="fas fa-check"></i> Approve</button>
+                </form>
+                <form action="/equipment/booking/<%= b.id %>/reject" method="POST" style="display:inline;">
+                  <button class="btn" style="font-size:12px;padding:6px 12px;color:var(--danger);"><i class="fas fa-times"></i> Reject</button>
+                </form>
+              <% } %>
+              <% if (b.status === 'approved') { %>
+                <form action="/equipment/booking/<%= b.id %>/complete" method="POST" style="display:inline;">
+                  <button class="btn btn-primary" style="font-size:12px;padding:6px 12px;"><i class="fas fa-check-double"></i> Mark Returned</button>
+                </form>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="card"><div class="card-body empty-state">
+        <i class="fas fa-inbox" style="font-size:36px;color:var(--text-muted);opacity:0.3;"></i>
+        <h3>No incoming requests</h3>
+        <p>When someone books your equipment, it will appear here.</p>
+      </div></div>
+    <% } %>
+  </div>
+
+  <!-- Panel: My Bookings (as renter) -->
+  <div class="eq-panel" id="panel-myBookings" style="display:none;">
+    <% if (myBookings.length > 0) { %>
+      <% myBookings.forEach(b => { %>
+        <div class="card" style="margin-bottom:12px;">
+          <div class="card-body" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+            <% if (b.equipment_image) { %>
+              <img src="<%= b.equipment_image %>" style="width:56px;height:56px;border-radius:var(--radius-sm);object-fit:cover;">
+            <% } %>
+            <div style="flex:1;min-width:180px;">
+              <h4 style="font-size:14px;font-weight:700;margin-bottom:4px;"><%= b.equipment_name %></h4>
+              <div style="font-size:12px;color:var(--text-muted);">
+                From: <strong><%= b.owner_name %></strong> •
+                📅 <%= new Date(b.start_date).toLocaleDateString() %> → <%= new Date(b.end_date).toLocaleDateString() %>
+              </div>
+              <div style="font-size:13px;font-weight:700;color:var(--primary);margin-top:4px;">₹<%= b.total_cost %> (<%= b.total_days %> days)</div>
+            </div>
+            <div style="display:flex;gap:6px;align-items:center;">
+              <span class="badge <%= b.status === 'pending' ? 'badge-warning' : b.status === 'approved' ? 'badge-success' : b.status === 'completed' ? 'badge-info' : 'badge-danger' %>"><%= b.status.toUpperCase() %></span>
+              <% if (b.status === 'completed') { %>
+                <button onclick="showReviewModal(<%= b.id %>)" class="btn" style="font-size:12px;padding:6px 12px;"><i class="fas fa-star"></i> Review</button>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="card"><div class="card-body empty-state">
+        <i class="fas fa-calendar" style="font-size:36px;color:var(--text-muted);opacity:0.3;"></i>
+        <h3>No bookings yet</h3>
+        <p><a href="/equipment" style="color:var(--primary);">Browse equipment</a> to make your first booking!</p>
+      </div></div>
+    <% } %>
+  </div>
+
+  <!-- Panel: Add New Equipment -->
+  <div class="eq-panel" id="panel-addNew" style="display:none;">
+    <div class="card">
+      <div class="card-header"><h3><i class="fas fa-plus-circle"></i> List New Equipment / नया उपकरण जोड़ें</h3></div>
+      <div class="card-body">
+        <form action="/equipment/add" method="POST" enctype="multipart/form-data">
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Equipment Name / नाम *</label>
+              <input type="text" name="name" class="form-control" placeholder="e.g. Mahindra 575 DI Tractor" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category / श्रेणी *</label>
+              <select name="category" class="form-control" required>
+                <option value="">Select / चुनें</option>
+                <% categories.forEach(c => { %><option value="<%= c.value %>"><%= c.label %></option><% }) %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Daily Rate (₹) / दैनिक किराया *</label>
+              <input type="number" name="daily_rate" class="form-control" placeholder="1500" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Deposit (₹) / जमा राशि</label>
+              <input type="number" name="deposit_amount" class="form-control" placeholder="5000" value="0">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Brand / ब्रांड</label>
+              <input type="text" name="brand" class="form-control" placeholder="Mahindra, Swaraj, etc.">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Horsepower / अश्वशक्ति</label>
+              <input type="text" name="horsepower" class="form-control" placeholder="45 HP">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Condition / स्थिति</label>
+              <select name="condition_rating" class="form-control">
+                <option value="new">New / नया</option>
+                <option value="good" selected>Good / अच्छा</option>
+                <option value="fair">Fair / ठीक</option>
+                <option value="worn">Worn / पुराना</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Year of Purchase</label>
+              <input type="number" name="year_of_purchase" class="form-control" placeholder="2020" min="1990" max="2026">
+            </div>
+            <div class="form-group" style="grid-column:span 2;">
+              <label class="form-label">Description / विवरण</label>
+              <textarea name="description" class="form-control" rows="3" placeholder="Describe your equipment — features, usage, etc."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Location / स्थान</label>
+              <input type="text" name="location_text" class="form-control" placeholder="Village, District, State">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Photo / फोटो</label>
+              <input type="file" name="image" class="form-control" accept="image/*">
+            </div>
+          </div>
+          <div style="margin-top:12px;display:flex;align-items:center;gap:12px;">
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;">
+              <input type="checkbox" name="auto_approve" style="accent-color:var(--primary);"> Auto-approve bookings / स्वचालित स्वीकृति
+            </label>
+            <button id="getLocationBtn" type="button" class="btn" style="font-size:12px;margin-left:auto;" onclick="getLocation()">
+              <i class="fas fa-location-arrow"></i> Get GPS Location
+            </button>
+          </div>
+          <input type="hidden" name="lat" id="equipLat">
+          <input type="hidden" name="lng" id="equipLng">
+          <button type="submit" class="btn btn-primary btn-lg w-100" style="margin-top:16px;">
+            <i class="fas fa-plus-circle"></i> List Equipment / उपकरण जोड़ें
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Review Modal -->
+<div id="reviewModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;display:none;align-items:center;justify-content:center;">
+  <div class="card" style="max-width:400px;width:90%;margin:auto;">
+    <div class="card-header"><h3><i class="fas fa-star"></i> Leave Review</h3></div>
+    <div class="card-body">
+      <div class="form-group">
+        <label class="form-label">Rating / रेटिंग</label>
+        <div id="starRating" style="font-size:28px;display:flex;gap:4px;cursor:pointer;">
+          <span onclick="setRating(1)">☆</span><span onclick="setRating(2)">☆</span><span onclick="setRating(3)">☆</span><span onclick="setRating(4)">☆</span><span onclick="setRating(5)">☆</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Review / समीक्षा</label>
+        <textarea id="reviewText" class="form-control" rows="3" placeholder="How was your experience?"></textarea>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="submitReview()" class="btn btn-primary" style="flex:1;"><i class="fas fa-paper-plane"></i> Submit</button>
+        <button onclick="closeReviewModal()" class="btn" style="flex:0.5;">Cancel</button>
+      </div>
+      <div id="reviewResult" style="margin-top:8px;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchEqTab(tab) {
+  document.querySelectorAll('.prediction-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.eq-panel').forEach(p => p.style.display = 'none');
+  event.target.closest('.prediction-tab').classList.add('active');
+  document.getElementById('panel-' + tab).style.display = 'block';
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
+    const btn = document.getElementById('getLocationBtn');
+    btn.innerHTML = '<div class="spinner" style="width:14px;height:14px;border-width:2px;"></div>';
+    navigator.geolocation.getCurrentPosition(pos => {
+      document.getElementById('equipLat').value = pos.coords.latitude;
+      document.getElementById('equipLng').value = pos.coords.longitude;
+      btn.innerHTML = '<i class="fas fa-check" style="color:var(--primary);"></i> Location Set';
+    }, () => { btn.innerHTML = '<i class="fas fa-times" style="color:var(--danger);"></i> Failed'; });
+  }
+}
+
+let currentBookingId = null;
+let currentRating = 0;
+
+function showReviewModal(bookingId) {
+  currentBookingId = bookingId;
+  currentRating = 0;
+  document.getElementById('reviewModal').style.display = 'flex';
+}
+
+function closeReviewModal() {
+  document.getElementById('reviewModal').style.display = 'none';
+}
+
+function setRating(n) {
+  currentRating = n;
+  const stars = document.getElementById('starRating').children;
+  for (let i = 0; i < 5; i++) stars[i].textContent = i < n ? '★' : '☆';
+}
+
+async function submitReview() {
+  if (!currentRating) return;
+  try {
+    const res = await fetch(`/equipment/booking/${currentBookingId}/review`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rating: currentRating, review_text: document.getElementById('reviewText').value })
+    });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('reviewResult').innerHTML = '<div class="alert alert-success">Review submitted! ⭐</div>';
+      setTimeout(() => { closeReviewModal(); location.reload(); }, 1500);
+    } else {
+      document.getElementById('reviewResult').innerHTML = `<div class="alert alert-error">${data.error}</div>`;
+    }
+  } catch(err) {
+    document.getElementById('reviewResult').innerHTML = '<div class="alert alert-error">Failed. Try again.</div>';
+  }
+}
+</script>
+
+<%- include('partials/footer') %>

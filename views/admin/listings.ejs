@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<%- include('../partials/sidebar') %>
+<% locals.activeMenu = 'admin-listings' %>
+
+<div class="bg-decoration"><div class="circle circle-1"></div></div>
+
+<main class="main-content">
+  <div class="page-header">
+    <h1><i class="fas fa-clipboard-list" style="color:var(--primary);"></i> Manage Listings</h1>
+    <p>Review and moderate marketplace listings.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-body"><div class="table-container"><table><thead><tr><th>Crop</th><th>Farmer</th><th>Qty</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+      <% listings.forEach(l => { %>
+      <tr>
+        <td style="color:var(--text-bright);font-weight:600;"><%= l.crop_name %></td>
+        <td><%= l.farmer_name %></td>
+        <td><%= l.quantity %> <%= l.unit %></td>
+        <td style="color:var(--primary);font-weight:700;">₹<%= l.price %></td>
+        <td><span class="badge <%= l.status === 'active' ? 'badge-success' : l.status === 'sold' ? 'badge-info' : 'badge-warning' %>"><%= l.status %></span></td>
+        <td>
+          <form action="/admin/listings/<%= l.id %>/status" method="POST" style="display:inline;">
+            <select name="status" onchange="this.form.submit()" class="form-control" style="padding:4px 8px;font-size:11px;width:auto;">
+              <option value="active" <%= l.status === 'active' ? 'selected' : '' %>>Active</option>
+              <option value="sold" <%= l.status === 'sold' ? 'selected' : '' %>>Sold</option>
+              <option value="pending" <%= l.status === 'pending' ? 'selected' : '' %>>Pending</option>
+              <option value="rejected" <%= l.status === 'rejected' ? 'selected' : '' %>>Rejected</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody></table></div></div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

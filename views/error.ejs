@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+
+<div class="bg-decoration">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+</div>
+
+<div class="auth-container">
+  <div class="auth-card" style="text-align:center;">
+    <i class="fas fa-exclamation-triangle" style="font-size:48px;color:var(--warning);margin-bottom:16px;"></i>
+    <h2 style="font-size:24px;font-weight:800;margin-bottom:8px;"><%= title %></h2>
+    <p style="color:var(--text-muted);margin-bottom:24px;"><%= message %></p>
+    <a href="/" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

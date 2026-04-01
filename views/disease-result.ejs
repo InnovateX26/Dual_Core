@@ -1,0 +1,66 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/sidebar') %>
+<% locals.activeMenu = 'disease' %>
+
+<div class="bg-decoration"><div class="circle circle-1"></div></div>
+
+<main class="main-content">
+  <div class="page-header">
+    <h1><i class="fas fa-microscope" style="color:var(--primary);"></i> Detection Result</h1>
+    <p>AI analysis complete. Here are the findings for your crop.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <% if (scan.image_path) { %>
+        <img src="<%= scan.image_path %>" style="width:100%;max-height:360px;object-fit:cover;" alt="Scanned crop">
+      <% } %>
+      <div class="card-body">
+        <h2 style="margin-bottom:4px;"><%= scan.disease_name %></h2>
+        <p class="text-muted" style="font-size:13px;margin-bottom:12px;">Crop: <strong style="color:var(--text-bright);"><%= scan.crop_type %></strong></p>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+          <span class="badge <%= scan.confidence >= 0.8 ? 'badge-success' : scan.confidence >= 0.5 ? 'badge-warning' : 'badge-danger' %>" style="font-size:14px;padding:6px 14px;">
+            <%= (scan.confidence * 100).toFixed(1) %>% Confidence
+          </span>
+        </div>
+        <div class="confidence-bar"><div class="confidence-bar-fill" style="width:<%= (scan.confidence * 100) %>%;"></div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-header"><h3><i class="fas fa-info-circle" style="color:var(--info);"></i> Disease Description</h3></div>
+        <div class="card-body">
+          <p style="color:var(--text-secondary);line-height:1.8;font-size:14px;" id="descText"><%= aiExplanation.description || scan.description || 'No description available.' %></p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-header"><h3><i class="fas fa-pills" style="color:var(--primary);"></i> Treatment Recommendations</h3></div>
+        <div class="card-body">
+          <p style="color:var(--text-secondary);line-height:1.8;font-size:14px;" id="treatText"><%= aiExplanation.treatment || 'Consult a local agricultural expert.' %></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-shield-alt" style="color:var(--warning);"></i> Prevention</h3></div>
+        <div class="card-body">
+          <p style="color:var(--text-secondary);line-height:1.8;font-size:14px;" id="prevText"><%= aiExplanation.prevention || 'Maintain regular monitoring.' %></p>
+        </div>
+      </div>
+
+      <a href="/disease" class="btn btn-primary btn-lg w-100" style="margin-top:16px;"><i class="fas fa-camera"></i> Scan Another Crop</a>
+    </div>
+  </div>
+</main>
+
+<script>
+// Convert markdown in AI responses
+['descText','treatText','prevText'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = mdToHtml(el.textContent);
+});
+</script>
+
+<%- include('partials/footer') %>

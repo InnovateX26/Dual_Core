@@ -1,0 +1,556 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/sidebar') %>
+<% locals.activeMenu = 'chat' %>
+
+<div class="bg-decoration"><div class="circle circle-1"></div></div>
+
+<main class="main-content">
+  <div class="card chat-container krishi-chat">
+    <div class="card-header krishi-header">
+      <div class="krishi-title-group">
+        <div class="krishi-avatar-ring">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <div>
+          <h3>Krishi Mitra <span class="krishi-badge">RAG-Powered</span></h3>
+          <p class="krishi-subtitle">Multilingual AI Farm Advisor • 11 Languages</p>
+        </div>
+      </div>
+      <div class="krishi-controls">
+        <select id="langSelector" class="krishi-lang-select" onchange="onLanguageChange()">
+          <% if (typeof languages !== 'undefined') { %>
+            <% languages.forEach(lang => { %>
+              <option value="<%= lang.code %>" data-tts="<%= lang.tts_code %>">
+                <%= lang.native %> (<%= lang.name %>)
+              </option>
+            <% }) %>
+          <% } %>
+        </select>
+        <label class="krishi-toggle" title="Auto-speak responses">
+          <input type="checkbox" id="autoSpeak" checked>
+          <i class="fas fa-volume-up"></i>
+        </label>
+        <button class="krishi-btn-icon" onclick="clearChat()" title="Clear chat">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="krishi-suggestions" id="suggestions">
+      <div class="krishi-suggestion-label"><i class="fas fa-lightbulb"></i> Quick Questions:</div>
+      <div class="krishi-chips" id="chipContainer">
+        <div class="chip" onclick="sendSuggestion(this)">🌾 How to increase rice yield?</div>
+        <div class="chip" onclick="sendSuggestion(this)">📋 PM-KISAN eligibility?</div>
+        <div class="chip" onclick="sendSuggestion(this)">🧪 Best fertilizer for tomato?</div>
+        <div class="chip" onclick="sendSuggestion(this)">🦠 Prevent fungal diseases?</div>
+        <div class="chip" onclick="sendSuggestion(this)">💰 How to sell at best price?</div>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <% if (chatHistory.length > 0) { %>
+        <% chatHistory.forEach(msg => { %>
+          <div class="chat-msg user">
+            <div class="msg-avatar user-avatar"><i class="fas fa-user"></i></div>
+            <div class="msg-bubble"><%= msg.message %></div>
+          </div>
+          <div class="chat-msg ai">
+            <div class="msg-avatar ai-avatar"><i class="fas fa-seedling"></i></div>
+            <div class="msg-content">
+              <div class="msg-bubble ai-response"><%- msg.response.replace(/\n/g, '<br>') %></div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="chat-msg ai">
+          <div class="msg-avatar ai-avatar"><i class="fas fa-seedling"></i></div>
+          <div class="msg-content">
+            <div class="msg-bubble krishi-welcome">
+              <div class="welcome-header">
+                <span class="welcome-emoji">🙏</span>
+                <strong>Namaste! I'm Krishi Mitra</strong>
+              </div>
+              <p>Your AI-powered farm advisor. I can help in <strong>11 Indian languages</strong> — just type or speak in your language!</p>
+              <div class="welcome-features">
+                <div class="welcome-feature"><i class="fas fa-bug"></i> Crop Diseases & Treatment</div>
+                <div class="welcome-feature"><i class="fas fa-flask"></i> Fertilizers & Dosages</div>
+                <div class="welcome-feature"><i class="fas fa-landmark"></i> Govt Schemes (PM-KISAN, PMFBY)</div>
+                <div class="welcome-feature"><i class="fas fa-cloud-sun"></i> Weather & Season Advisory</div>
+                <div class="welcome-feature"><i class="fas fa-rupee-sign"></i> Market Prices & MSP</div>
+                <div class="welcome-feature"><i class="fas fa-leaf"></i> Organic & Best Practices</div>
+              </div>
+              <p class="welcome-hint"><i class="fas fa-microphone"></i> Use the mic button to speak in any language!</p>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+
+    <div class="krishi-input-area">
+      <!-- Recording Status Bar -->
+      <div class="krishi-recording-bar" id="recordingBar" style="display:none;">
+        <div class="rec-indicator"><span class="rec-dot"></span> Recording...</div>
+        <span class="rec-lang" id="recLangLabel"></span>
+        <span class="rec-timer" id="recTimer">0:00</span>
+        <button class="rec-stop-btn" onclick="stopVoiceAndSend()" title="Stop & Send">
+          <i class="fas fa-stop"></i> Stop & Send
+        </button>
+      </div>
+
+      <div class="krishi-input-wrapper">
+        <input type="text" id="chatInput" placeholder="Ask me anything about farming... किसी भी भाषा में पूछें..." autocomplete="off" onkeypress="if(event.key==='Enter')sendMessage()">
+        <div class="krishi-input-actions">
+          <button class="krishi-voice-btn" id="voiceBtn" onclick="toggleVoice()" title="Hold to speak, click to toggle">
+            <i class="fas fa-microphone" id="micIcon"></i>
+            <span class="recording-pulse"></span>
+          </button>
+          <button class="krishi-send-btn" onclick="sendMessage()" id="sendBtn">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+      <div class="krishi-detected-lang" id="detectedLangBar" style="display:none;">
+        <i class="fas fa-language"></i>
+        <span id="detectedLangText"></span>
+        <span id="ragContextBadge" class="krishi-context-badge"></span>
+      </div>
+    </div>
+
+    <!-- Floating Stop Speaking Button -->
+    <div class="krishi-stop-speaking" id="stopSpeakingBtn" style="display:none;" onclick="stopSpeaking()">
+      <i class="fas fa-volume-mute"></i>
+      <span>Stop Speaking</span>
+    </div>
+  </div>
+</main>
+
+<!-- Upload Data Modal -->
+<div class="krishi-modal-overlay" id="uploadModal" style="display:none;">
+  <div class="krishi-modal">
+    <div class="krishi-modal-header">
+      <h3><i class="fas fa-upload"></i> Upload Knowledge Data</h3>
+      <button onclick="closeUploadModal()" class="krishi-btn-icon"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="krishi-modal-body">
+      <label>Category:</label>
+      <select id="uploadCategory" class="form-control">
+        <option value="crop_diseases">Crop Diseases</option>
+        <option value="fertilizers">Fertilizers</option>
+        <option value="government_schemes">Government Schemes</option>
+        <option value="weather_advisory">Weather Advisory</option>
+        <option value="market_prices">Market Prices</option>
+        <option value="farming_practices">Farming Practices</option>
+        <option value="custom">Custom</option>
+      </select>
+      <label>Data (JSON):</label>
+      <textarea id="uploadData" class="form-control" rows="8" placeholder='[{"title": "...", "content": "..."}]'></textarea>
+      <button class="btn btn-primary" onclick="submitUpload()" style="margin-top:12px;width:100%;">
+        <i class="fas fa-cloud-upload-alt"></i> Upload & Index
+      </button>
+      <div id="uploadResult" style="margin-top:8px;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var chatMessages = document.getElementById('chatMessages');
+var chatInput = document.getElementById('chatInput');
+var currentLanguage = 'en';
+var lastDetectedLang = null;
+
+// Inline mdToHtml (main.js loads after this script)
+function mdToHtml(text) {
+  if (!text) return '';
+  var html = text
+    .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    .replace(/^[\-\*] (.+)$/gm, '<li>$1</li>')
+    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+    .replace(/\n/g, '<br>');
+  html = html.replace(/((<li>.*?<\/li>)(<br>)?)+/g, function(match) {
+    return '<ul>' + match.replace(/<br>/g, '') + '</ul>';
+  });
+  return html;
+}
+
+// Convert markdown in existing messages
+document.querySelectorAll('.ai-response').forEach(function(el) {
+  el.innerHTML = mdToHtml(el.textContent);
+});
+
+function scrollToBottom() { chatMessages.scrollTop = chatMessages.scrollHeight; }
+scrollToBottom();
+
+function onLanguageChange() {
+  const sel = document.getElementById('langSelector');
+  currentLanguage = sel.value;
+  updateSuggestionChips();
+}
+
+function updateSuggestionChips() {
+  // Will be updated dynamically from server response
+}
+
+function sendSuggestion(chip) {
+  chatInput.value = chip.textContent.replace(/^[^\s]+\s/, ''); // Remove emoji prefix
+  sendMessage();
+}
+
+async function sendMessage() {
+  const message = chatInput.value.trim();
+  if (!message) return;
+  document.getElementById('suggestions').style.display = 'none';
+
+  // User message
+  chatMessages.innerHTML += `
+    <div class="chat-msg user">
+      <div class="msg-avatar user-avatar"><i class="fas fa-user"></i></div>
+      <div class="msg-bubble">${escapeHtml(message)}</div>
+    </div>`;
+  chatInput.value = '';
+  scrollToBottom();
+
+  // Typing indicator
+  const typingId = 'typing-' + Date.now();
+  chatMessages.innerHTML += `
+    <div class="chat-msg ai" id="${typingId}">
+      <div class="msg-avatar ai-avatar"><i class="fas fa-seedling"></i></div>
+      <div class="msg-content">
+        <div class="msg-bubble">
+          <div class="krishi-thinking">
+            <div class="thinking-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="thinking-text">Thinking...</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  scrollToBottom();
+
+  try {
+    const langSel = document.getElementById('langSelector');
+    const langHint = langSel.value !== 'en' ? langSel.value : null;
+
+    const res = await fetch('/chat/send', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ message, language_hint: langHint })
+    });
+    const json = await res.json();
+    document.getElementById(typingId).remove();
+
+    if (json.success) {
+      const html = mdToHtml(json.response);
+
+      // Detected language badge
+      let langBadge = '';
+      if (json.detected_language) {
+        const dl = json.detected_language;
+        langBadge = `<div class="msg-lang-badge" title="${dl.language_name} (${Math.round(dl.confidence * 100)}%)">
+          <i class="fas fa-language"></i> ${dl.native_name || dl.language_name}
+          ${json.context_used > 0 ? `<span class="context-dot" title="${json.context_used} knowledge sources used">📚${json.context_used}</span>` : ''}
+        </div>`;
+
+        // Update detected language bar
+        showDetectedLang(dl, json.context_used);
+
+        // Auto-set voice language
+        if (dl.tts_code) {
+          document.getElementById('langSelector').value = dl.language_code;
+        }
+
+        // Update suggestion chips if server sent them
+        if (json.suggestions && json.suggestions.length > 0) {
+          updateChips(json.suggestions);
+        }
+      }
+
+      chatMessages.innerHTML += `
+        <div class="chat-msg ai">
+          <div class="msg-avatar ai-avatar"><i class="fas fa-seedling"></i></div>
+          <div class="msg-content">
+            ${langBadge}
+            <div class="msg-bubble">${html}</div>
+          </div>
+        </div>`;
+
+      // Auto speak
+      if (document.getElementById('autoSpeak').checked) {
+        const ttsCode = json.detected_language?.tts_code || 'hi-IN';
+        speak(json.response, ttsCode);
+      }
+    } else {
+      chatMessages.innerHTML += `
+        <div class="chat-msg ai">
+          <div class="msg-avatar ai-avatar"><i class="fas fa-seedling"></i></div>
+          <div class="msg-content">
+            <div class="msg-bubble msg-error">⚠️ ${json.error || 'Something went wrong. Please try again.'}</div>
+          </div>
+        </div>`;
+    }
+  } catch(err) {
+    document.getElementById(typingId)?.remove();
+    chatMessages.innerHTML += `
+      <div class="chat-msg ai">
+        <div class="msg-avatar ai-avatar"><i class="fas fa-seedling"></i></div>
+        <div class="msg-content">
+          <div class="msg-bubble msg-error">🔌 Connection error. Please check if the server is running.</div>
+        </div>
+      </div>`;
+  }
+  scrollToBottom();
+}
+
+function showDetectedLang(dl, contextCount) {
+  const bar = document.getElementById('detectedLangBar');
+  document.getElementById('detectedLangText').textContent =
+    `Detected: ${dl.language_name} (${Math.round(dl.confidence * 100)}%)`;
+  const badge = document.getElementById('ragContextBadge');
+  badge.textContent = contextCount > 0 ? `📚 ${contextCount} sources used` : '';
+  bar.style.display = 'flex';
+  setTimeout(() => bar.style.display = 'none', 6000);
+}
+
+function updateChips(suggestions) {
+  const container = document.getElementById('chipContainer');
+  const emojis = ['🌾', '📋', '🧪', '🦠', '💰', '☀️', '🌱', '💊'];
+  container.innerHTML = suggestions.map((s, i) =>
+    `<div class="chip" onclick="sendSuggestion(this)">${emojis[i % emojis.length]} ${s}</div>`
+  ).join('');
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+async function clearChat() {
+  if (!confirm('Clear all chat history?')) return;
+  await fetch('/chat/clear', { method:'POST' });
+  location.reload();
+}
+
+// === Voice Input (Web Speech API) ===
+var recognition = null;
+var isRecording = false;
+var recTimerInterval = null;
+var recSeconds = 0;
+var currentRecLang = 'hi-IN';
+var currentRecLangName = 'Hindi';
+
+function toggleVoice() {
+  console.log('[Mic] toggleVoice called. isRecording=' + isRecording);
+
+  var hasSR = ('webkitSpeechRecognition' in window) || ('SpeechRecognition' in window);
+  if (!hasSR) {
+    alert('Voice not supported. Use Google Chrome.');
+    return;
+  }
+
+  if (isRecording) {
+    stopVoiceAndSend();
+    return;
+  }
+
+  // Stop TTS
+  stopSpeaking();
+
+  // Get language
+  var langSel = document.getElementById('langSelector');
+  if (langSel) {
+    var opt = langSel.options[langSel.selectedIndex];
+    currentRecLang = (opt && opt.dataset && opt.dataset.tts) ? opt.dataset.tts : 'hi-IN';
+    currentRecLangName = opt ? opt.text : 'Hindi';
+  }
+
+  // Create recognition
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.lang = currentRecLang;
+  recognition.interimResults = true;
+  recognition.continuous = true;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = function() {
+    console.log('[Mic] Started! lang=' + currentRecLang);
+    isRecording = true;
+    chatInput.value = '';
+    chatInput.placeholder = '🎙 Listening... speak now';
+    var btn = document.getElementById('voiceBtn');
+    if (btn) btn.classList.add('recording');
+    var icon = document.getElementById('micIcon');
+    if (icon) icon.className = 'fas fa-stop';
+    var bar = document.getElementById('recordingBar');
+    if (bar) bar.style.display = 'flex';
+    var lbl = document.getElementById('recLangLabel');
+    if (lbl) lbl.textContent = currentRecLangName;
+    recSeconds = 0;
+    var tmr = document.getElementById('recTimer');
+    if (tmr) tmr.textContent = '0:00';
+    if (recTimerInterval) clearInterval(recTimerInterval);
+    recTimerInterval = setInterval(function() {
+      recSeconds++;
+      var m = Math.floor(recSeconds / 60);
+      var s = String(recSeconds % 60).padStart(2, '0');
+      var t = document.getElementById('recTimer');
+      if (t) t.textContent = m + ':' + s;
+    }, 1000);
+  };
+
+  recognition.onresult = function(e) {
+    var final = '', interim = '';
+    for (var i = 0; i < e.results.length; i++) {
+      if (e.results[i].isFinal) {
+        final += e.results[i][0].transcript;
+      } else {
+        interim += e.results[i][0].transcript;
+      }
+    }
+    chatInput.value = final + interim;
+  };
+
+  recognition.onerror = function(e) {
+    console.error('[Mic] Error:', e.error);
+    if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
+      alert('🎤 Microphone blocked by browser!\n\nClick the lock icon 🔒 in the address bar → Allow Microphone → Reload page.');
+      stopVoice(false);
+    } else if (e.error === 'audio-capture') {
+      alert('🎤 Cannot access microphone!\n\nFix this:\n1. Windows Settings → Privacy → Microphone\n2. Turn ON "Allow apps to access your microphone"\n3. Make sure Chrome is allowed\n4. Close any other app using the mic\n5. Reload this page');
+      stopVoice(false);
+    } else if (e.error === 'no-speech') {
+      // will auto-restart via onend
+    } else if (e.error === 'network') {
+      alert('Voice needs internet connection.');
+      stopVoice(false);
+    } else {
+      stopVoice(false);
+    }
+  };
+
+  recognition.onend = function() {
+    console.log('[Mic] Ended. isRecording=' + isRecording);
+    if (isRecording && recognition) {
+      setTimeout(function() {
+        if (isRecording) {
+          try { recognition.start(); } catch(ex) { stopVoice(false); }
+        }
+      }, 150);
+    }
+  };
+
+  try {
+    recognition.start();
+    console.log('[Mic] start() called OK');
+  } catch(ex) {
+    console.error('[Mic] start() failed:', ex);
+    alert('Could not start mic: ' + ex.message);
+    stopVoice(false);
+  }
+}
+
+
+function stopVoiceAndSend() {
+  stopVoice(true);
+}
+
+function stopVoice(autoSend = false) {
+  isRecording = false;
+  document.getElementById('voiceBtn').classList.remove('recording');
+  document.getElementById('micIcon').className = 'fas fa-microphone';
+  chatInput.placeholder = 'Ask me anything about farming... किसी भी भाषा में पूछें...';
+
+  // Hide recording bar
+  document.getElementById('recordingBar').style.display = 'none';
+
+  // Stop timer
+  if (recTimerInterval) { clearInterval(recTimerInterval); recTimerInterval = null; }
+
+  if (recognition) {
+    try { recognition.stop(); } catch(e) {}
+    recognition = null;
+  }
+
+  // Auto-send if there's text
+  if (autoSend && chatInput.value.trim()) {
+    setTimeout(() => sendMessage(), 200);
+  }
+}
+
+// === Text-to-Speech with Stop Button ===
+var isSpeaking = false;
+
+function speak(text, lang = 'hi-IN') {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+
+  const clean = text.replace(/[*#`\-_]/g, '').replace(/\n+/g, '. ');
+  const utterance = new SpeechSynthesisUtterance(clean);
+  utterance.lang = lang;
+  utterance.rate = 0.95;
+
+  // Show stop button
+  utterance.onstart = () => {
+    isSpeaking = true;
+    document.getElementById('stopSpeakingBtn').style.display = 'flex';
+  };
+  utterance.onend = () => {
+    isSpeaking = false;
+    document.getElementById('stopSpeakingBtn').style.display = 'none';
+  };
+  utterance.onerror = () => {
+    isSpeaking = false;
+    document.getElementById('stopSpeakingBtn').style.display = 'none';
+  };
+
+  window.speechSynthesis.speak(utterance);
+}
+
+function stopSpeaking() {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+  isSpeaking = false;
+  document.getElementById('stopSpeakingBtn').style.display = 'none';
+}
+
+// === Upload Data Modal ===
+function openUploadModal() {
+  document.getElementById('uploadModal').style.display = 'flex';
+}
+function closeUploadModal() {
+  document.getElementById('uploadModal').style.display = 'none';
+}
+
+async function submitUpload() {
+  const category = document.getElementById('uploadCategory').value;
+  const dataStr = document.getElementById('uploadData').value;
+  const resultDiv = document.getElementById('uploadResult');
+
+  try {
+    const documents = JSON.parse(dataStr);
+    const res = await fetch('/chat/upload-data', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ category, documents: Array.isArray(documents) ? documents : [documents] })
+    });
+    const json = await res.json();
+    if (json.success) {
+      resultDiv.innerHTML = `<div style="color:var(--success);">✅ ${json.documents_added} documents added, ${json.vectors_added} vectors indexed!</div>`;
+    } else {
+      resultDiv.innerHTML = `<div style="color:var(--danger);">❌ ${json.errors?.join(', ') || 'Upload failed'}</div>`;
+    }
+  } catch(e) {
+    resultDiv.innerHTML = `<div style="color:var(--danger);">❌ Invalid JSON format: ${e.message}</div>`;
+  }
+}
+</script>
+
+<%- include('partials/footer') %>

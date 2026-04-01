@@ -1,0 +1,273 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/sidebar') %>
+<% locals.activeMenu = 'equipment' %>
+
+<div class="bg-decoration"><div class="circle circle-1"></div><div class="circle circle-2"></div></div>
+
+<main class="main-content">
+  <a href="/equipment" style="color:var(--primary);font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-bottom:16px;">
+    <i class="fas fa-arrow-left"></i> Back to Equipment List
+  </a>
+
+  <div class="grid-2">
+    <!-- Left: Equipment Info -->
+    <div>
+      <div class="card">
+        <% if (equip.image_path) { %>
+          <img src="<%= equip.image_path %>" alt="<%= equip.name %>" style="width:100%;max-height:320px;object-fit:cover;border-radius:var(--radius) var(--radius) 0 0;">
+        <% } else { %>
+          <div style="width:100%;height:240px;background:linear-gradient(135deg,var(--primary-dim),var(--bg-glass));display:flex;align-items:center;justify-content:center;border-radius:var(--radius) var(--radius) 0 0;">
+            <i class="fas fa-tractor" style="font-size:64px;color:var(--primary);opacity:0.3;"></i>
+          </div>
+        <% } %>
+        <div class="card-body">
+          <div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:12px;">
+            <div>
+              <h1 style="font-size:22px;font-weight:800;margin-bottom:6px;"><%= equip.name %></h1>
+              <span class="badge badge-info"><%= equip.category %></span>
+              <% if (equip.condition_rating) { %>
+                <span class="badge <%= equip.condition_rating === 'new' ? 'badge-success' : equip.condition_rating === 'good' ? 'badge-info' : 'badge-warning' %>"><%= equip.condition_rating %></span>
+              <% } %>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:32px;font-weight:900;color:var(--primary);">₹<%= equip.daily_rate %><span style="font-size:14px;color:var(--text-muted);font-weight:400;"> / day</span></div>
+              <% if (equip.deposit_amount > 0) { %>
+                <div style="font-size:12px;color:var(--text-muted);">Deposit: ₹<%= equip.deposit_amount %></div>
+              <% } %>
+            </div>
+          </div>
+
+          <% if (equip.description) { %>
+            <p style="margin-top:14px;color:var(--text-secondary);line-height:1.6;font-size:14px;"><%= equip.description %></p>
+          <% } %>
+
+          <!-- Specs -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;">
+            <% if (equip.brand) { %>
+              <div class="glass" style="padding:10px;border-radius:var(--radius-sm);">
+                <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;">Brand</div>
+                <div style="font-weight:700;font-size:14px;"><%= equip.brand %></div>
+              </div>
+            <% } %>
+            <% if (equip.horsepower) { %>
+              <div class="glass" style="padding:10px;border-radius:var(--radius-sm);">
+                <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;">Power</div>
+                <div style="font-weight:700;font-size:14px;"><%= equip.horsepower %></div>
+              </div>
+            <% } %>
+            <div class="glass" style="padding:10px;border-radius:var(--radius-sm);">
+              <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;">Total Rentals</div>
+              <div style="font-weight:700;font-size:14px;"><%= equip.total_bookings %></div>
+            </div>
+            <div class="glass" style="padding:10px;border-radius:var(--radius-sm);">
+              <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;">Rating</div>
+              <div style="font-weight:700;font-size:14px;color:var(--warning);"><%= equip.avg_rating > 0 ? '⭐ ' + equip.avg_rating.toFixed(1) : 'No ratings' %></div>
+            </div>
+          </div>
+
+          <!-- Owner Info -->
+          <div style="margin-top:20px;padding:14px;background:var(--bg-glass);border-radius:var(--radius-sm);display:flex;align-items:center;gap:12px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--primary-dim);display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-user" style="color:var(--primary);"></i>
+            </div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:14px;"><%= equip.owner_name %></div>
+              <div style="font-size:12px;color:var(--text-muted);"><i class="fas fa-map-marker-alt"></i> <%= equip.location_text || equip.owner_location || 'Location not set' %></div>
+            </div>
+            <% if (equip.owner_phone) { %>
+              <a href="tel:<%= equip.owner_phone %>" class="btn btn-primary" style="font-size:12px;padding:8px 14px;">
+                <i class="fas fa-phone"></i> Call
+              </a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews -->
+      <div class="card" style="margin-top:20px;">
+        <div class="card-header"><h3><i class="fas fa-star"></i> Reviews (<%= reviews.length %>)</h3></div>
+        <div class="card-body">
+          <% if (reviews.length > 0) { %>
+            <% reviews.forEach(r => { %>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border-glass);">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <strong style="font-size:13px;"><%= r.reviewer_name %></strong>
+                  <span style="color:var(--warning);font-size:13px;"><%= '⭐'.repeat(r.rating) %></span>
+                </div>
+                <% if (r.review_text) { %><p style="margin-top:6px;font-size:13px;color:var(--text-secondary);"><%= r.review_text %></p><% } %>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:4px;"><%= new Date(r.created_at).toLocaleDateString() %></div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <div class="empty-state"><p style="color:var(--text-muted);">No reviews yet</p></div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Calendar & Booking -->
+    <div>
+      <!-- Availability Calendar -->
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-calendar-alt"></i> Availability / उपलब्धता</h3></div>
+        <div class="card-body">
+          <div id="miniCalendar" style="font-size:13px;"></div>
+          <div style="display:flex;gap:12px;margin-top:12px;font-size:11px;">
+            <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:var(--primary);vertical-align:middle;"></span> Available</span>
+            <span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:var(--danger);vertical-align:middle;"></span> Booked</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking Form -->
+      <% if (equip.owner_id !== user.id) { %>
+        <div class="card" style="margin-top:20px;">
+          <div class="card-header"><h3><i class="fas fa-calendar-check"></i> Book Equipment / बुक करें</h3></div>
+          <div class="card-body">
+            <!-- Trust Badge -->
+            <div style="padding:10px;border-radius:var(--radius-sm);margin-bottom:16px;font-size:13px;background:<%= trust.trust_score >= 70 ? 'var(--primary-dim)' : trust.trust_score >= 40 ? 'rgba(255,193,7,0.1)' : 'rgba(255,82,82,0.1)' %>;">
+              <i class="fas fa-shield-alt" style="color:<%= trust.trust_score >= 70 ? 'var(--primary)' : trust.trust_score >= 40 ? 'var(--warning)' : 'var(--danger)' %>;"></i>
+              Trust Score: <strong><%= Math.round(trust.trust_score) %></strong>/100
+              <% if (trust.deposit_required && equip.deposit_amount > 0) { %>
+                <br><small style="color:var(--text-muted);">Deposit of ₹<%= equip.deposit_amount %> required</small>
+              <% } %>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Start Date / शुरू तारीख</label>
+              <input type="date" id="startDate" class="form-control" min="<%= new Date().toISOString().split('T')[0] %>" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">End Date / अंतिम तारीख</label>
+              <input type="date" id="endDate" class="form-control" min="<%= new Date().toISOString().split('T')[0] %>" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Notes / नोट</label>
+              <textarea id="renterNotes" class="form-control" rows="2" placeholder="What do you need it for? / किसलिए चाहिए?"></textarea>
+            </div>
+
+            <!-- Cost Preview -->
+            <div id="costPreview" style="display:none;padding:12px;background:var(--bg-glass);border-radius:var(--radius-sm);margin-bottom:16px;">
+              <div style="display:flex;justify-content:space-between;font-size:13px;">
+                <span>Daily Rate:</span><span>₹<%= equip.daily_rate %>/day</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;margin-top:4px;">
+                <span>Days:</span><span id="totalDays">0</span>
+              </div>
+              <hr style="border:1px solid var(--border-glass);margin:8px 0;">
+              <div style="display:flex;justify-content:space-between;font-weight:700;font-size:16px;color:var(--primary);">
+                <span>Total / कुल:</span><span id="totalCost">₹0</span>
+              </div>
+            </div>
+
+            <button type="button" onclick="submitBooking()" id="bookBtn" class="btn btn-primary btn-lg w-100" disabled>
+              <i class="fas fa-calendar-check"></i> Request Booking / बुकिंग करें
+            </button>
+            <div id="bookResult" style="margin-top:12px;"></div>
+          </div>
+        </div>
+      <% } else { %>
+        <div class="card" style="margin-top:20px;">
+          <div class="card-body" style="text-align:center;padding:24px;">
+            <i class="fas fa-info-circle" style="font-size:24px;color:var(--info);"></i>
+            <p style="margin-top:8px;color:var(--text-muted);">This is your equipment listing.</p>
+            <a href="/equipment/my-equipment" class="btn btn-primary" style="margin-top:12px;">
+              <i class="fas fa-edit"></i> Manage Equipment
+            </a>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<script>
+// Blocked dates from server
+const blockedDates = new Set(<%= JSON.stringify(blockedDates.map(d => new Date(d.blocked_date).toISOString().split('T')[0])) %>);
+const dailyRate = <%= equip.daily_rate %>;
+
+// Mini Calendar
+function renderCalendar() {
+  const cal = document.getElementById('miniCalendar');
+  const now = new Date();
+  let html = '';
+  for (let m = 0; m < 2; m++) {
+    const month = new Date(now.getFullYear(), now.getMonth() + m, 1);
+    const monthName = month.toLocaleString('default', { month: 'long', year: 'numeric' });
+    html += `<div style="margin-bottom:16px;"><strong style="display:block;margin-bottom:8px;">${monthName}</strong>`;
+    html += '<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center;">';
+    ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => { html += `<div style="font-size:10px;font-weight:700;color:var(--text-muted);padding:4px;">${d}</div>`; });
+    const firstDay = month.getDay();
+    for (let i = 0; i < firstDay; i++) html += '<div></div>';
+    const daysInMonth = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateStr = `${month.getFullYear()}-${String(month.getMonth()+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const isBlocked = blockedDates.has(dateStr);
+      const isPast = new Date(dateStr) < new Date(new Date().toISOString().split('T')[0]);
+      const bg = isPast ? 'var(--bg-glass)' : isBlocked ? 'var(--danger)' : 'var(--primary)';
+      const opacity = isPast ? '0.3' : isBlocked ? '0.8' : '0.2';
+      const color = isPast ? 'var(--text-muted)' : isBlocked ? '#fff' : 'var(--text)';
+      html += `<div style="padding:6px 2px;border-radius:4px;background:${bg};opacity:${isPast?'0.4':'1'};color:${color};font-size:12px;font-weight:${isBlocked?'700':'400'};">${d}</div>`;
+    }
+    html += '</div></div>';
+  }
+  cal.innerHTML = html;
+}
+renderCalendar();
+
+// Cost calculation
+function updateCost() {
+  const s = document.getElementById('startDate').value;
+  const e = document.getElementById('endDate').value;
+  if (s && e) {
+    const days = Math.ceil((new Date(e) - new Date(s)) / 86400000) + 1;
+    if (days > 0) {
+      document.getElementById('totalDays').textContent = days;
+      document.getElementById('totalCost').textContent = '₹' + (days * dailyRate);
+      document.getElementById('costPreview').style.display = 'block';
+      document.getElementById('bookBtn').disabled = false;
+    } else {
+      document.getElementById('costPreview').style.display = 'none';
+      document.getElementById('bookBtn').disabled = true;
+    }
+  }
+}
+document.getElementById('startDate')?.addEventListener('change', updateCost);
+document.getElementById('endDate')?.addEventListener('change', updateCost);
+
+// Submit booking
+async function submitBooking() {
+  const btn = document.getElementById('bookBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner" style="width:20px;height:20px;border-width:2px;margin:0 auto;"></div> Processing...';
+  try {
+    const res = await fetch('/equipment/<%= equip.id %>/book', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        start_date: document.getElementById('startDate').value,
+        end_date: document.getElementById('endDate').value,
+        renter_notes: document.getElementById('renterNotes').value
+      })
+    });
+    const data = await res.json();
+    const rd = document.getElementById('bookResult');
+    if (data.success) {
+      rd.innerHTML = `<div class="alert alert-success">${data.booking.message}<br>Total: ₹${data.booking.total_cost} for ${data.booking.total_days} days</div>`;
+      btn.innerHTML = '<i class="fas fa-check"></i> Booked!';
+      renderCalendar();
+    } else {
+      rd.innerHTML = `<div class="alert alert-error">${data.error}</div>`;
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-calendar-check"></i> Request Booking';
+    }
+  } catch(err) {
+    document.getElementById('bookResult').innerHTML = '<div class="alert alert-error">Network error. Try again.</div>';
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-calendar-check"></i> Request Booking';
+  }
+}
+</script>
+
+<%- include('partials/footer') %>

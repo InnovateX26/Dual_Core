@@ -1,0 +1,84 @@
+<%- include('partials/header') %>
+
+<div class="bg-decoration">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+  <div class="circle circle-3"></div>
+</div>
+
+<div class="landing-page">
+  <nav class="landing-nav">
+    <a href="/" class="navbar-brand">
+      <div class="brand-icon"><i class="fas fa-leaf"></i></div>
+      AgriConnect
+    </a>
+    <ul class="landing-nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="/auth/login" class="btn btn-secondary btn-sm"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+      <li><a href="/auth/register" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Get Started</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge"><i class="fas fa-bolt"></i> AI-Powered Agriculture Platform</div>
+    <h1>Grow Smarter with <span class="gradient-text">AgriConnect</span></h1>
+    <p>Harness Computer Vision, Machine Learning, and Conversational AI to detect crop diseases, predict yields, forecast prices, and connect with the marketplace — all in one platform.</p>
+    <div class="hero-buttons">
+      <a href="/auth/register" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Start Free Today</a>
+      <a href="#features" class="btn btn-secondary btn-lg"><i class="fas fa-sparkles"></i> Explore Features</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="number">38+</div><div class="label">Diseases Detected</div></div>
+      <div class="hero-stat"><div class="number">95%</div><div class="label">Detection Accuracy</div></div>
+      <div class="hero-stat"><div class="number">24/7</div><div class="label">AI Assistant</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="section-header">
+      <h2>Powerful Features for Smart Farming</h2>
+      <p>Everything a modern farmer needs to maximize productivity and minimize losses.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-camera" style="color:var(--primary);"></i></div><h3>Disease Detection</h3><p>Upload a photo and our hybrid AI (Gemini Vision + MobileNetV2) instantly identifies diseases with treatment recommendations.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt" style="color:var(--warning);"></i></div><h3>Farm Risk Score</h3><p>Dynamic risk scoring using Random Forest ML combining weather, soil, disease, and market data into one actionable metric.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-seedling" style="color:var(--primary);"></i></div><h3>Yield Prediction</h3><p>Predict your crop output based on area, soil quality, weather, and season using trained ML models.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-rupee-sign" style="color:var(--info);"></i></div><h3>Price Forecasting</h3><p>Know the best time to sell with AI-powered price trend forecasting and optimal selling window suggestions.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-robot" style="color:#8B5CF6;"></i></div><h3>AI Farm Advisor</h3><p>Chat with a Gemini-powered AI assistant with voice support for farming guidance, government schemes, and expert tips.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-store" style="color:var(--accent);"></i></div><h3>Crop Marketplace</h3><p>List and sell crops directly to buyers. Get AI-powered price suggestions for fair market rates.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="section-header"><h2>How It Works</h2><p>From farm to market in 4 simple steps.</p></div>
+    <div class="steps">
+      <div class="step"><div class="step-number">1</div><h3>Upload Crop Image</h3><p>Take a photo of your crop and upload for instant AI analysis.</p></div>
+      <div class="step"><div class="step-number">2</div><h3>AI Detects Disease</h3><p>Gemini Vision AI identifies the disease and provides treatment via AI.</p></div>
+      <div class="step"><div class="step-number">3</div><h3>Get Risk & Predictions</h3><p>Random Forest models calculate risk score, predict yield, and forecast prices.</p></div>
+      <div class="step"><div class="step-number">4</div><h3>Sell on Marketplace</h3><p>List crops at AI-suggested prices and connect with buyers directly.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="impact">
+    <div class="section-header"><h2>Real-World Impact</h2><p>Empowering farmers with technology for a sustainable future.</p></div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-globe" style="color:var(--primary);"></i></div><h3>Reduce Crop Loss</h3><p>Early disease detection saves up to 40% of potential crop loss.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-line" style="color:var(--info);"></i></div><h3>Improve Income</h3><p>Better market access and price forecasting for maximum profit.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-handshake" style="color:var(--accent);"></i></div><h3>Bridge the Gap</h3><p>Direct marketplace connecting farmers, buyers, and government bodies.</p></div>
+    </div>
+  </section>
+
+  <section class="section" style="text-align:center;">
+    <h2 style="font-size:36px;font-weight:900;margin-bottom:16px;">Ready to Farm Smarter?</h2>
+    <p style="color:var(--text-muted);font-size:16px;margin-bottom:30px;">Join farmers using AgriConnect to grow more with less risk.</p>
+    <a href="/auth/register" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Create Free Account</a>
+  </section>
+
+  <footer class="landing-footer">
+    <p>&copy; 2026 AgriConnect. Built with <i class="fas fa-heart" style="color:var(--danger);"></i> for Indian Farmers. Powered by MobileNetV2, Random Forest & Gemini AI.</p>
+  </footer>
+</div>
+
+<%- include('partials/footer') %>

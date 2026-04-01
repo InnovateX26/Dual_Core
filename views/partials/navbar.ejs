@@ -1,0 +1,44 @@
+<nav class="navbar">
+  <div class="d-flex align-center gap-2">
+    <button class="hamburger" onclick="toggleSidebar()">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="/" class="navbar-brand">
+      <div class="brand-icon"><i class="fas fa-leaf"></i></div>
+      AgriConnect
+    </a>
+  </div>
+
+  <div class="navbar-actions">
+    <div class="weather-mini" id="weatherMini" style="display:none;">
+      <i class="fas fa-cloud-sun"></i>
+      <span class="temp" id="navTemp">--°</span>
+    </div>
+
+    <% if (user) { %>
+      <button class="nav-icon-btn" title="Notifications">
+        <i class="fas fa-bell"></i>
+        <span class="badge-dot"></span>
+      </button>
+      <div class="navbar-user">
+        <div class="user-avatar"><%= user.name.charAt(0).toUpperCase() %></div>
+        <span class="user-name"><%= user.name %></span>
+        <a href="/auth/logout" class="btn btn-sm btn-secondary"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    <% } else { %>
+      <a href="/auth/login" class="btn btn-sm btn-secondary"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a href="/auth/register" class="btn btn-sm btn-primary"><i class="fas fa-rocket"></i> Get Started</a>
+    <% } %>
+  </div>
+</nav>
+
+<% if (typeof success_msg !== 'undefined' && success_msg.length > 0) { %>
+  <div class="alert alert-success" style="position:fixed;top:74px;right:20px;z-index:2000;max-width:400px;">
+    <i class="fas fa-check-circle"></i> <%= success_msg %>
+  </div>
+<% } %>
+<% if (typeof error_msg !== 'undefined' && error_msg.length > 0) { %>
+  <div class="alert alert-error" style="position:fixed;top:74px;right:20px;z-index:2000;max-width:400px;">
+    <i class="fas fa-exclamation-circle"></i> <%= error_msg %>
+  </div>
+<% } %>

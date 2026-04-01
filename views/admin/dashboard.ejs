@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<%- include('../partials/sidebar') %>
+<% locals.activeMenu = 'admin' %>
+
+<div class="bg-decoration"><div class="circle circle-1"></div></div>
+
+<main class="main-content">
+  <div class="page-header">
+    <h1><i class="fas fa-chart-bar" style="color:var(--primary);"></i> Admin Dashboard</h1>
+    <p>Platform overview and management.</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-users" style="color:var(--primary);"></i></div><div class="stat-value"><%= stats.totalUsers %></div><div class="stat-label">Total Users</div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-tractor" style="color:var(--accent);"></i></div><div class="stat-value"><%= stats.totalFarmers %></div><div class="stat-label">Farmers</div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-microscope" style="color:var(--info);"></i></div><div class="stat-value"><%= stats.totalScans %></div><div class="stat-label">Disease Scans</div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-store" style="color:var(--warning);"></i></div><div class="stat-value"><%= stats.totalListings %></div><div class="stat-label">Listings</div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle" style="color:var(--primary);"></i></div><div class="stat-value"><%= stats.activeListings %></div><div class="stat-label">Active</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header"><h3><i class="fas fa-microscope"></i> Recent Scans</h3></div>
+      <div class="card-body"><div class="table-container"><table><thead><tr><th>Disease</th><th>Crop</th><th>Conf.</th></tr></thead><tbody>
+        <% recentScans.forEach(s => { %><tr><td><%= s.disease_name %></td><td><%= s.crop_type %></td><td><span class="badge <%= s.confidence >= 0.8 ? 'badge-success' : 'badge-warning' %>"><%= (s.confidence*100).toFixed(0) %>%</span></td></tr><% }) %>
+      </tbody></table></div></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3><i class="fas fa-chart-line"></i> Monthly Signups</h3></div>
+      <div class="card-body"><canvas id="signupChart" height="200"></canvas></div>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('signupChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: [<% monthlyUsers.forEach(m => { %>'<%= m.month %>',<% }) %>],
+    datasets: [{
+      label: 'Signups', data: [<% monthlyUsers.forEach(m => { %><%= m.count %>,<% }) %>],
+      backgroundColor: 'rgba(34,197,94,0.3)', borderColor: '#22C55E', borderWidth: 2, borderRadius: 8
+    }]
+  },
+  options: { responsive: true, plugins: { legend: { display: false } }, scales: {
+    y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.5)' } },
+    x: { grid: { display: false }, ticks: { color: 'rgba(255,255,255,0.5)' } }
+  }}
+});
+</script>
+
+<%- include('../partials/footer') %>

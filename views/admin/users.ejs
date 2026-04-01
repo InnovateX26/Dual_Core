@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<%- include('../partials/sidebar') %>
+<% locals.activeMenu = 'admin-users' %>
+
+<div class="bg-decoration"><div class="circle circle-1"></div></div>
+
+<main class="main-content">
+  <div class="page-header">
+    <h1><i class="fas fa-users" style="color:var(--primary);"></i> User Management</h1>
+    <p>Manage all registered users on the platform.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-body"><div class="table-container"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th><th>Actions</th></tr></thead><tbody>
+      <% users.forEach(u => { %>
+      <tr>
+        <td style="color:var(--text-bright);font-weight:600;"><%= u.name %></td>
+        <td><%= u.email %></td>
+        <td><span class="badge <%= u.role === 'admin' ? 'badge-info' : 'badge-success' %>"><%= u.role %></span></td>
+        <td><%= new Date(u.created_at).toLocaleDateString() %></td>
+        <td style="display:flex;gap:6px;">
+          <form action="/admin/users/<%= u.id %>/role" method="POST" style="display:inline;">
+            <select name="role" onchange="this.form.submit()" class="form-control" style="padding:4px 8px;font-size:11px;width:auto;">
+              <option value="farmer" <%= u.role === 'farmer' ? 'selected' : '' %>>Farmer</option>
+              <option value="admin" <%= u.role === 'admin' ? 'selected' : '' %>>Admin</option>
+            </select>
+          </form>
+          <form action="/admin/users/<%= u.id %>/delete" method="POST" onsubmit="return confirm('Delete this user?')">
+            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody></table></div></div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

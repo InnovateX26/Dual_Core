@@ -1,0 +1,46 @@
+<aside class="sidebar" id="sidebar">
+  <ul class="sidebar-menu">
+    <li class="menu-label">Main</li>
+    <li class="menu-item <%= typeof activeMenu !== 'undefined' && activeMenu === 'dashboard' ? 'active' : '' %>">
+      <a href="/dashboard"><i class="fas fa-stream"></i> Feed</a>
+    </li>
+    <li class="menu-item <%= typeof activeMenu !== 'undefined' && activeMenu === 'disease' ? 'active' : '' %>">
+      <a href="/disease"><i class="fas fa-leaf"></i> Disease Scan</a>
+    </li>
+    <li class="menu-item <%= typeof activeMenu !== 'undefined' && activeMenu === 'predictions' ? 'active' : '' %>">
+      <a href="/predictions"><i class="fas fa-chart-line"></i> Predictions & Risk</a>
+    </li>
+    <li class="menu-item <%= typeof activeMenu !== 'undefined' && activeMenu === 'chat' ? 'active' : '' %>">
+      <a href="/chat"><i class="fas fa-robot"></i> AI Advisor</a>
+    </li>
+
+    <li class="menu-label">Marketplace</li>
+    <li class="menu-item <%= typeof activeMenu !== 'undefined' && activeMenu === 'marketplace' ? 'active' : '' %>">
+      <a href="/marketplace"><i class="fas fa-store"></i> Browse Market</a>
+    </li>
+    <li class="menu-item <%= typeof activeMenu !== 'undefined' && activeMenu === 'my-listings' ? 'active' : '' %>">
+      <a href="/marketplace/my-listings"><i class="fas fa-box"></i> My Listings</a>
+    </li>
+
+    <li class="menu-label">Equipment Sharing</li>
+    <li class="menu-item <%= typeof activeMenu !== 'undefined' && activeMenu === 'equipment' ? 'active' : '' %>">
+      <a href="/equipment"><i class="fas fa-tractor"></i> Rent Equipment</a>
+    </li>
+    <li class="menu-item <%= typeof activeMenu !== 'undefined' && activeMenu === 'my-equipment' ? 'active' : '' %>">
+      <a href="/equipment/my-equipment"><i class="fas fa-tools"></i> My Equipment</a>
+    </li>
+
+    <% if (user && user.role === 'admin') { %>
+      <li class="menu-label">Admin</li>
+      <li class="menu-item <%= typeof activeMenu !== 'undefined' && activeMenu === 'admin' ? 'active' : '' %>">
+        <a href="/admin"><i class="fas fa-chart-bar"></i> Dashboard</a>
+      </li>
+      <li class="menu-item <%= typeof activeMenu !== 'undefined' && activeMenu === 'admin-users' ? 'active' : '' %>">
+        <a href="/admin/users"><i class="fas fa-users"></i> Users</a>
+      </li>
+      <li class="menu-item <%= typeof activeMenu !== 'undefined' && activeMenu === 'admin-listings' ? 'active' : '' %>">
+        <a href="/admin/listings"><i class="fas fa-clipboard-list"></i> Listings</a>
+      </li>
+    <% } %>
+  </ul>
+</aside>
