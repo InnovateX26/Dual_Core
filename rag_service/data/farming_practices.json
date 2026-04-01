@@ -1,0 +1,92 @@
+[
+  {
+    "id": "fp001",
+    "category": "farming_practices",
+    "title": "Soil Testing and Balanced Fertilization",
+    "content": "Soil testing is the foundation of good farming. Every farmer should test soil every 2 years. How to collect soil sample: Take 8-10 samples from different spots in the field at 15cm depth, mix well, take 500g for testing. Avoid edges, near trees, or manure heaps. Where to test: Nearest Soil Testing Laboratory (free under Soil Health Card scheme), KVK, or private labs (Rs 200-500). Key parameters: pH (ideal 6.5-7.5), Organic Carbon (above 0.5%), available N, P, K, and micronutrients (Zn, Fe, Mn, Cu, B). Based on results: Apply fertilizers only as recommended. Most Indian soils are deficient in N, Zn, and S but may have adequate P in some regions. Balanced fertilization increases yield by 20-30% while reducing fertilizer cost by 15-20%. Maintain fertilizer ratio of 4:2:1 (N:P:K) for most cereal crops."
+  },
+  {
+    "id": "fp002",
+    "category": "farming_practices",
+    "title": "Crop Rotation Practices for Sustained Productivity",
+    "content": "Crop rotation is growing different crops in sequence on the same land. Benefits: Breaks pest and disease cycles, improves soil fertility, reduces weed problems, diversifies income. Recommended rotations for different regions: Indo-Gangetic Plains: Rice-Wheat (add summer moong every 3rd year), Rice-Potato-Onion, Maize-Wheat-Moong. Central India: Soybean-Wheat, Cotton-Wheat, Pigeon pea-Wheat. South India: Rice-Rice (add pulse in summer), Rice-Groundnut, Rice-Maize. Key rules: Follow cereal with legume (legumes fix nitrogen), follow deep-rooted with shallow-rooted crops, follow heavy feeder with light feeder. Include a pulse crop every 2-3 seasons to add 30-50 kg N per hectare naturally. Avoid continuous rice-rice or wheat-wheat for more than 3 years."
+  },
+  {
+    "id": "fp003",
+    "category": "farming_practices",
+    "title": "Integrated Pest Management (IPM)",
+    "content": "IPM uses multiple strategies to manage pests economically with minimum environmental impact. Components: 1. Prevention: Use resistant varieties, healthy seeds, proper spacing, timely sowing. 2. Cultural control: Crop rotation, intercropping, trap crops, weed management. 3. Mechanical control: Pheromone traps (5-10 per hectare), light traps, hand picking of large insects. 4. Biological control: Release Trichogramma cards (1-1.5 lakh eggs per hectare) for bollworm in cotton and stem borer in rice. Use NPV for Helicoverpa. Lady bird beetles for aphids. 5. Chemical control: Use only when pest crosses Economic Threshold Level (ETL). Choose specific pesticides over broad-spectrum. Rotate different groups to prevent resistance. Always follow label doses and waiting period before harvest. Key principle: Do not spray for first 30 days after sowing to conserve natural enemies."
+  },
+  {
+    "id": "fp004",
+    "category": "farming_practices",
+    "title": "Drip Irrigation Installation and Management",
+    "content": "Drip irrigation delivers water directly to plant root zone through a network of pipes and emitters. Saves 40-60% water compared to flood irrigation and increases yield by 20-40%. Components: Main line, sub-main line, lateral lines with inline or online emitters. Suitable crops: Vegetables, fruits, sugarcane, cotton, spices. Not practical for closely planted cereals like rice and wheat. Cost: Rs 45,000-1,00,000 per hectare depending on crop. Subsidy: 55% for small/marginal farmers under PMKSY. Installation tips: Install filter system (sand + screen filter), maintain 1-1.5 kg/cm2 pressure, space emitters based on crop (40cm for vegetables, 60cm for cotton). Fertigation: Dissolve water-soluble fertilizers and apply through drip system - saves 30% fertilizer. Maintenance: Flush laterals monthly, clean filters weekly, check for clogged emitters. Lifespan: 7-10 years with proper maintenance."
+  },
+  {
+    "id": "fp005",
+    "category": "farming_practices",
+    "title": "Organic Farming Methods and Certification",
+    "content": "Organic farming avoids synthetic chemicals using natural inputs and ecological processes. Key practices: 1. Nutrient management: FYM at 10-15 tonnes per hectare, vermicompost at 2-5 tonnes per hectare, green manuring with Dhaincha or Sunhemp. Use Jeevamrut (cow dung + cow urine + jaggery + pulse flour + water, fermented 7 days) at 200 liters per acre every 15 days. 2. Pest management: Neem oil spray at 3-5ml per liter, Dashparni Ark (10 leaves extract), Trichoderma soil application, pheromone traps. 3. Weed management: Mulching, hand weeding, stale seed bed technique. Certification: PGS India (free, group of 5+ farmers) for domestic market. Takes 3 years transition period. Benefits: 20-50% price premium, improved soil health, lower input costs after establishment. Challenges: Lower yield in first 2-3 years, labor intensive. Government support under PKVY scheme."
+  },
+  {
+    "id": "fp006",
+    "category": "farming_practices",
+    "title": "Seed Selection and Treatment for Better Germination",
+    "content": "Good quality seed is the most important input in farming. Seed selection tips: 1. Use certified seeds from government agencies (NSC, SFCI), KVKs, or agricultural universities. Avoid using farm-saved seeds for more than 2-3 generations. 2. For hybrids (cotton, maize, vegetables), buy fresh seed every season. 3. Check seed label for variety name, lot number, germination percentage (should be above 80%), and expiry date. Seed treatment: Essential for protecting against soil-borne diseases. Fungicide treatment: Carbendazim 50 WP or Thiram at 2-3g per kg seed. Bio-agent treatment: Trichoderma viride at 4g per kg seed (compatible with Carbendazim). Rhizobium inoculant for legumes: 200g per 10 kg seed with jaggery solution. Micronutrient treatment: Zinc sulphate at 3g per kg wheat seed in zinc-deficient soils. Method: Treat with fungicide first, dry in shade, then apply bio-agent."
+  },
+  {
+    "id": "fp007",
+    "category": "farming_practices",
+    "title": "Zero Tillage and Conservation Agriculture",
+    "content": "Zero tillage (no-till) means sowing crops directly into previous crop residue without ploughing. Saves Rs 3,500-4,500 per hectare on land preparation. Reduces diesel/fuel usage by 60-80 liters per hectare. Widely adopted for wheat after rice in Punjab, Haryana, and western UP. Benefits: Saves 15-20 days enabling timely sowing, conserves soil moisture, reduces soil erosion, improves soil organic carbon over time, reduces air pollution by enabling crop residue retention instead of burning. Equipment needed: Zero till seed drill (Happy Seeder for sowing into rice straw). Cost of Happy Seeder: Rs 1.5-2 lakhs with 50% subsidy. Conservation Agriculture principles: 1. Minimum soil disturbance, 2. Permanent soil cover with crop residue, 3. Crop diversification. Yield: Equal or 5-10% higher than conventional tillage. Best for: Wheat, chickpea, mustard, lentil after rice or maize."
+  },
+  {
+    "id": "fp008",
+    "category": "farming_practices",
+    "title": "Intercropping Systems for Higher Income",
+    "content": "Intercropping means growing two or more crops simultaneously in the same field. Benefits: Higher total income per unit area (Land Equivalent Ratio 1.2-1.6), risk diversification, better use of resources, pest reduction. Recommended intercropping systems: Sugarcane + Potato/Onion/Wheat (in initial 3-4 months), Cotton + Moong/Soybean (1:1 or 1:2 ratio), Maize + Cowpea (2:2 rows), Pigeon pea + Soybean (1:3 rows), Groundnut + Sunflower (6:1 rows), Banana + Vegetables (in first year). Important rules: Combine tall and short crops (light management), combine deep and shallow rooted crops, combine cereal with legume, match maturity periods. Example income boost: Cotton + Soybean intercrop gives Rs 15,000-20,000 extra per hectare. Sugarcane + Potato gives Rs 40,000-60,000 extra income during establishment year."
+  },
+  {
+    "id": "fp009",
+    "category": "farming_practices",
+    "title": "Post-Harvest Management to Reduce Losses",
+    "content": "India loses 15-20% of food grains and 30-40% of fruits and vegetables post-harvest. Key post-harvest practices: 1. Harvesting at right moisture: Wheat at 14-16% moisture, rice at 20-22% (dry to 14% before storage), pulses at 10-12%. 2. Drying: Sun dry grains to 12-14% moisture. Use tarpaulin for clean drying. NEVER dry directly on soil. 3. Storage: Use moisture-proof structures. Pusa bin (metal bins) for small farmers (Rs 3,000-5,000 for 1.5 tonne capacity). Hermetic storage bags (Rs 100-200 per bag) for 50 kg - eliminates need for pesticide treatment. For large quantities use warehouse (government warehouses charge Rs 3-5 per quintal per month). 4. Grain treatment: Mix neem leaves at 1% by weight for insect protection. For chemical treatment: Aluminium phosphide fumigation by trained operators only. 5. Cool chain for fruits and vegetables: Pre-cool, pack well, transport in refrigerated or shaded vehicles."
+  },
+  {
+    "id": "fp010",
+    "category": "farming_practices",
+    "title": "Water Management and Rainwater Harvesting for Farms",
+    "content": "Effective water management is critical in Indian agriculture where 55% of farmland is rainfed. Strategies: 1. Farm pond: Dig 20x20x3m pond (lined with silpaulin sheet) to store 1200 cubic meters of rainwater. Cost Rs 1-2 lakh with 50% subsidy under PMKSY/MGNREGA. Provides 2-3 supplementary irrigations during dry spells. 2. Rooftop rainwater harvesting: Divert roof water to underground tank or farm pond. 100 sq.m roof collects 50,000-80,000 liters per monsoon. 3. Check dams and percolation tanks: Community structures to recharge groundwater. 4. Efficient irrigation scheduling: Irrigate at critical growth stages, not on fixed schedule. Use tensiometer (Rs 2,000) to measure soil moisture and irrigate only when needed. 5. Mulching reduces moisture loss by 25-30%. 6. Raised bed planting saves 30-40% water in wheat and vegetables. Apply 5-7 irrigations instead of 10-12."
+  },
+  {
+    "id": "fp011",
+    "category": "farming_practices",
+    "title": "Wheat Cultivation Guide - Gehun Ki Kheti Kaise Karein - गेहूं की खेती कैसे करें",
+    "content": "Complete guide to wheat cultivation in India (gehun ki kheti). गेहूं की खेती की पूरी जानकारी। Best time to sow wheat: October 25 to November 25 (timely sown), late sown: up to December 25. Varieties: Timely sown - HD 2967, HD 3086, PBW 343, DBW 17. Late sown - HD 3059, PBW 373, Raj 3765, WH 1105. Land preparation: 2-3 ploughings with cultivator, then planking for leveling. Seed rate: 100 kg per hectare (timely), 125 kg per hectare (late sown). Seed treatment: Carboxin + Thiram at 2g per kg seed. Sowing method: Seed drill at 20-22 cm row spacing, 5-6 cm depth. Fertilizer: Apply 120-150 kg N, 60 kg P2O5, 40 kg K2O per hectare. Apply half N + full P + full K at sowing, remaining N in 2 splits (first irrigation and second irrigation). Irrigation: 5-6 irrigations at CRI (21 days), tillering, jointing, flowering, milking, dough stages. First irrigation (CRI stage) is MOST critical. Weed control: Sulfosulfuron 25g per hectare at 30-35 DAS, or Clodinafop 60g per hectare for grassy weeds. Harvesting: When moisture is 14-16%, grains are hard and golden. Average yield: 45-55 quintals per hectare with good management."
+  },
+  {
+    "id": "fp012",
+    "category": "farming_practices",
+    "title": "Rice Cultivation Guide - Dhan Ki Kheti - चावल धान की खेती कैसे करें",
+    "content": "Complete guide to rice/paddy cultivation in India (dhan ki kheti). धान की खेती की पूरी जानकारी। Nursery preparation: Sow nursery in May-June, 30-40 kg seed for 1 hectare transplanting. Treat seeds with Carbendazim 2g per kg. Nursery bed: 1.25m wide raised beds with FYM and DAP. Main field preparation: Puddling with 2-3 ploughings in standing water, level the field well. Transplanting: 20-25 day old seedlings, 2-3 seedlings per hill, 20x15 cm spacing. Best varieties: Pusa Basmati 1121, Pusa 44, Samba Mahsuri, Swarna, MTU 7029, IR 64. Fertilizer: 120 kg N, 60 kg P2O5, 60 kg K2O per hectare. Apply Zinc Sulphate at 25 kg per hectare in zinc-deficient soils. Water management: Maintain 5 cm standing water for first 2 weeks, then AWD (Alternate Wetting and Drying). Drain water 15 days before harvest. Major diseases: Blast (spray Tricyclazole), Sheath Blight (spray Hexaconazole), BLB (use resistant varieties). Harvesting: When 80% panicles turn golden, at 20-22% moisture. Dry to 14% for storage. Average yield: 50-70 quintals per hectare."
+  },
+  {
+    "id": "fp013",
+    "category": "farming_practices",
+    "title": "Tomato Cultivation Guide - Tamatar Ki Kheti - टमाटर की खेती कैसे करें",
+    "content": "Complete guide to tomato farming in India (tamatar ki kheti). टमाटर की खेती की पूरी जानकारी। Seasons: Rabi (Sep-Oct sowing), Kharif (Jun-Jul sowing), Summer (Jan-Feb sowing). Nursery: Sow seeds in pro-trays or raised beds, transplant at 25-30 days. Varieties: Pusa Ruby, Pusa Rohini, Arka Vikas, Arka Rakshak (disease resistant), hybrid - Abhilash, US 440. Spacing: 60x45 cm or 75x60 cm. Stakes or trellises increase yield by 30%. Fertilizer: 200 kg N, 100 kg P2O5, 100 kg K2O per hectare. Apply 50% N + full P + K at transplanting, rest in 2-3 splits. Irrigation: Drip irrigation is best, saves 40% water. Irrigate every 3-4 days in summer. Mulching with plastic mulch increases yield by 25-30%. Major pests: Fruit borer (Trichogramma + Neem oil), Whitefly (yellow sticky traps + Imidacloprid), Leaf miner. Diseases: Early blight (spray Mancozeb), Late blight (spray Metalaxyl + Mancozeb). Harvesting: Pick at breaker stage for distant markets, pink stage for local. Yield: 400-600 quintals per hectare."
+  },
+  {
+    "id": "fp014",
+    "category": "farming_practices",
+    "title": "Onion Cultivation Guide - Pyaz Ki Kheti - प्याज की खेती कैसे करें",
+    "content": "Complete guide to onion farming in India (pyaz ki kheti). प्याज की खेती की पूरी जानकारी। Seasons: Rabi (main crop, transplant Nov-Dec), Kharif (transplant Jul-Aug), Late Kharif (transplant Sep-Oct). Nursery: Sow 8-10 kg seed per hectare, transplant 45-50 day seedlings. Varieties: Rabi - Pusa Red, N53, Agrifound Light Red, NHRDF Red. Kharif - Agrifound Dark Red, Baswant 780, Bhima Super. Raised bed method: Make 120 cm wide, 15 cm high beds. Spacing: 15x10 cm. Transplant seedlings 2-3 cm deep. Fertilizer: 100 kg N, 50 kg P2O5, 50 kg K2O per hectare + 25 kg Sulphur. Apply Sulphur for better bulb quality and storage life. Irrigation: Light frequent irrigation. Stop irrigation 10-15 days before harvest. Major issues: Purple blotch (spray Mancozeb), Thrips (spray Fipronil), neck rot. Harvesting: When 50-75% tops fall over naturally. Cure in shade for 7-10 days before storage. Storage: Store in well-ventilated structures. Losses can be 25-40% in 6 months. Cold storage at 0-2°C or use maleic hydrazide spray at 15 days before harvest. Yield: 250-350 quintals per hectare."
+  },
+  {
+    "id": "fp015",
+    "category": "farming_practices",
+    "title": "Drought Management Strategies for Farmers - Sukha Prabandhan - सूखा प्रबंधन",
+    "content": "Drought management requires both preparation and response strategies. सूखा प्रबंधन की रणनीतियाँ। Short-term measures: Reduce crop area, grow drought-tolerant varieties (C306 wheat, Sahbhagi Dhan rice, CSV 15, CSV 17 sorghum), skip non-critical irrigations. Apply anti-transpirants like Kaolin spray at 5%. Mulch heavily to conserve moisture. Medium-term: Adopt micro-irrigation (drip/sprinkler). Construct farm ponds under MGNREGA or PMKSY to store rainwater. Grow short-duration crops and drought-resistant varieties. Long-term: Build water harvesting structures, practice conservation agriculture (zero tillage, residue retention), improve soil organic matter. Government support during drought: Apply for PMFBY crop insurance claim, seek relief from District Collector. Alternate income: Consider goat rearing, poultry which need less water."
+  }
+]

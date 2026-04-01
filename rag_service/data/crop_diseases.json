@@ -1,0 +1,92 @@
+[
+  {
+    "id": "cd001",
+    "category": "crop_diseases",
+    "title": "Rice Blast Disease (Magnaporthe oryzae)",
+    "content": "Rice Blast is one of the most destructive diseases of rice caused by the fungus Magnaporthe oryzae. Symptoms include diamond-shaped lesions on leaves that are gray or white in the center with brown borders. In severe cases, it causes neck rot where the panicle base turns brown and breaks. The disease spreads rapidly in humid conditions with temperatures between 25-28°C. Treatment: Apply Tricyclazole 75 WP at 0.6g per liter of water or Isoprothiolane 40 EC at 1.5ml per liter. For organic control, use Pseudomonas fluorescens at 2.5kg per hectare. Prevention: Use resistant varieties like Pusa Basmati 1121, avoid excess nitrogen fertilizer, maintain proper spacing between plants, and ensure good drainage. Spray fungicides preventively during wet weather."
+  },
+  {
+    "id": "cd002",
+    "category": "crop_diseases",
+    "title": "Wheat Rust (Puccinia species)",
+    "content": "Wheat Rust is a major fungal disease of wheat in India caused by Puccinia species. Three types exist: Yellow/Stripe Rust (P. striiformis), Brown/Leaf Rust (P. recondita), and Black/Stem Rust (P. graminis). Symptoms appear as pustules on leaves - yellow stripes for stripe rust, brown oval spots for leaf rust, and dark brown to black elongated pustules for stem rust. The disease is most severe in cool and humid conditions (10-15°C for yellow rust, 15-22°C for brown rust). Treatment: Spray Propiconazole 25 EC at 1ml per liter of water or Tebuconazole 250 EC at 1ml per liter. Apply at first sign of pustules. Prevention: Use resistant varieties like HD 3086, PBW 343. Timely sowing in November, avoid late sowing. Remove volunteer wheat plants."
+  },
+  {
+    "id": "cd003",
+    "category": "crop_diseases",
+    "title": "Tomato Leaf Curl Virus (ToLCV)",
+    "content": "Tomato Leaf Curl Virus is caused by begomoviruses transmitted by whiteflies (Bemisia tabaci). Symptoms include upward curling of leaves, thickening of veins, stunted growth, and reduced fruit production. Affected plants show yellow-green mosaic patterns. The disease is most common during dry and warm weather. There is no direct cure once a plant is infected. Management: Remove and destroy infected plants immediately. Control whiteflies using yellow sticky traps, neem oil spray (5ml per liter), or Imidacloprid 17.8 SL at 0.3ml per liter. Plant resistant varieties like Arka Rakshak and Arka Samrat. Use reflective silver mulch to repel whiteflies. Plant marigold as trap crop around tomato field."
+  },
+  {
+    "id": "cd004",
+    "category": "crop_diseases",
+    "title": "Cotton Bollworm (Helicoverpa armigera)",
+    "content": "Cotton Bollworm is the most destructive pest of cotton in India. The larvae bore into bolls and feed on developing seeds, causing significant yield loss of up to 50%. Adult moths lay eggs on leaves and tender parts. Larvae are greenish with dark stripes. Integrated Pest Management approach is recommended. Treatment: Use pheromone traps at 5 per hectare for monitoring. Spray NPV (Nuclear Polyhedrosis Virus) at 250 LE per hectare. Chemical control: Emamectin Benzoate 5 SG at 0.4g per liter or Chlorantraniliprole 18.5 SC at 0.3ml per liter. Organic options: Neem seed kernel extract at 5% concentration. Prevention: Plant Bt cotton varieties, intercrop with pigeon pea, use bird perches at 20 per hectare."
+  },
+  {
+    "id": "cd005",
+    "category": "crop_diseases",
+    "title": "Late Blight of Potato (Phytophthora infestans)",
+    "content": "Late Blight of potato is caused by the oomycete Phytophthora infestans and is one of the most devastating diseases worldwide. Symptoms include water-soaked dark green to brown lesions on leaves that spread rapidly in wet conditions. White cottony growth appears on the underside of leaves. Tubers develop reddish-brown dry rot. The disease spreads extremely fast during cool (15-22°C) and humid weather with fog or rain. Treatment: Spray Mancozeb 75 WP at 2.5g per liter as preventive spray. For curative treatment use Cymoxanil + Mancozeb at 3g per liter or Metalaxyl + Mancozeb at 2.5g per liter. Spray every 7-10 days during favorable conditions. Prevention: Use certified disease-free seed tubers, plant resistant varieties like Kufri Jyoti, ensure good drainage, destroy infected plant debris."
+  },
+  {
+    "id": "cd006",
+    "category": "crop_diseases",
+    "title": "Bacterial Leaf Blight of Rice (Xanthomonas oryzae)",
+    "content": "Bacterial Leaf Blight (BLB) is caused by Xanthomonas oryzae pv. oryzae and is one of the most serious rice diseases in India particularly during kharif season. Symptoms start as water-soaked stripes on leaf margins that enlarge and turn straw-yellow. Leaves dry up from tip to base. Milky bacterial ooze can be seen in early morning. Disease spreads through wind-driven rain and contaminated water. Treatment: No effective chemical control exists. Use Streptocycline at 500ppm + Copper oxychloride at 3g per liter as preventive. Drain excess water from fields. Prevention: Use resistant varieties like Improved Samba Mahsuri. Avoid excess nitrogen. Ensure balanced fertilization with potash. Clean field channels."
+  },
+  {
+    "id": "cd007",
+    "category": "crop_diseases",
+    "title": "Powdery Mildew of Vegetables",
+    "content": "Powdery Mildew affects many vegetable crops including peas, cucurbits, and okra. It is caused by various fungi of the Erysiphaceae family. Symptoms include white powdery coating on upper leaf surface, stems, and sometimes fruits. Affected leaves turn yellow and drop prematurely. Plants become weak and produce fewer fruits. Favored by moderate temperatures (20-25°C) and high humidity but dry leaf surfaces. Treatment: Spray Sulphur WP 80% at 3g per liter or Hexaconazole 5 EC at 1ml per liter. Spray every 10-15 days. For organic control use milk spray (1:9 ratio with water) or potassium bicarbonate at 3g per liter. Prevention: Ensure proper plant spacing for air circulation, avoid overhead irrigation, grow resistant varieties."
+  },
+  {
+    "id": "cd008",
+    "category": "crop_diseases",
+    "title": "Sugarcane Red Rot (Colletotrichum falcatum)",
+    "content": "Red Rot is the most destructive disease of sugarcane in India caused by the fungus Colletotrichum falcatum. Internal symptoms show reddening of cane tissue with white patches. External symptoms include drying of third and fourth leaves from top, discoloration of juice. Infected canes become hollow and have an alcoholic smell. The disease spreads through infected seed material and soil. Treatment: There is no effective chemical treatment once the disease establishes. Dip seed canes in Carbendazim 50 WP at 2g per liter for 15 minutes before planting. Prevention: Use disease-free seed canes, grow resistant varieties like Co 0238, Co 86032. Practice crop rotation, remove and burn infected clumps, avoid waterlogging."
+  },
+  {
+    "id": "cd009",
+    "category": "crop_diseases",
+    "title": "Mustard Aphid (Lipaphis erysimi)",
+    "content": "Mustard Aphid is the most destructive pest of mustard and rapeseed in India particularly in North India. Small green soft-bodied insects cluster on tender shoots, leaves, and flower buds. They suck plant sap causing curling of leaves, stunted growth, and pod shriveling. Heavy infestation can reduce yield by 30-70%. Aphids also transmit viral diseases. Peak activity occurs in cool weather (December-February). Treatment: Spray Dimethoate 30 EC at 1ml per liter or Imidacloprid 17.8 SL at 0.3ml per liter. For organic control spray neem oil at 5ml per liter or use soap solution (10g per liter). Release Lady bird beetles as biocontrol agents. Prevention: Timely sowing in October, apply mustard oil traps, intercrop with wheat."
+  },
+  {
+    "id": "cd010",
+    "category": "crop_diseases",
+    "title": "Groundnut Tikka Disease (Cercospora arachidicola)",
+    "content": "Tikka disease or leaf spot of groundnut is caused by Cercospora arachidicola (early leaf spot) and Cercosporidium personatum (late leaf spot). Early leaf spots are brown with yellow halos on upper leaf surface. Late leaf spots are darker, nearly black, without distinct halos. Severe infection causes premature defoliation reducing yield by 20-50%. Disease is favored by warm and humid conditions during kharif season. Treatment: Spray Mancozeb 75 WP at 2.5g per liter or Carbendazim 50 WP at 1g per liter at 30, 45, and 60 days after sowing. For organic farming use Trichoderma viride as soil application at 2.5kg per hectare. Prevention: Use treated seeds, practice crop rotation, avoid continuous groundnut cultivation."
+  },
+  {
+    "id": "cd011",
+    "category": "crop_diseases",
+    "title": "Mango Anthracnose (Colletotrichum gloeosporioides)",
+    "content": "Anthracnose is the most important pre and post-harvest disease of mango caused by Colletotrichum gloeosporioides. Black spots appear on leaves, flowers, and fruits. Flower infection causes blossom blight with black withered panicles. Fruit infection shows dark sunken spots that spread during ripening. Disease is most severe during rainy and humid weather. Treatment: Spray Carbendazim 50 WP at 1g per liter or Thiophanate Methyl 70 WP at 1g per liter. Spray at flowering stage and repeat at 15-day intervals. For post-harvest control, dip fruits in hot water (52°C) for 5 minutes. Prevention: Prune dead wood, collect and destroy fallen fruits, ensure good tree canopy management for air circulation."
+  },
+  {
+    "id": "cd012",
+    "category": "crop_diseases",
+    "title": "Chilli Fruit Rot and Die Back (Colletotrichum capsici)",
+    "content": "Chilli fruit rot and die-back is caused by Colletotrichum capsici. Die-back symptoms show drying of shoot tips progressing downward. Fruit rot appears as circular sunken spots with concentric rings on ripe fruits. Seeds in infected fruits become dark brown. Disease is spread by infected seeds and rain splash. Yield loss can reach 50% in severe cases. Treatment: Seed treatment with Thiram at 3g per kg of seed. Spray Mancozeb 75 WP at 2.5g per liter or Propiconazole at 1ml per liter at 15-day intervals. Organic option: Spray Trichoderma viride at 4g per liter. Prevention: Use certified seeds, proper plant spacing, crop rotation with non-solanaceous crops."
+  },
+  {
+    "id": "cd013",
+    "category": "crop_diseases",
+    "title": "Banana Panama Wilt (Fusarium oxysporum f.sp. cubense)",
+    "content": "Panama Wilt or Fusarium wilt is the most destructive disease of banana especially affecting Grand Naine and Robusta varieties. Symptoms include yellowing and wilting of lower leaves starting from margins. Splitting of pseudostem base reveals brown vascular discoloration. Plants collapse and die. The fungus survives in soil for many years. Disease is severe in acidic and poorly drained soils. Treatment: No effective chemical cure exists. Apply Carbendazim 50 WP soil drench at 2g per liter around plant base. Use biocontrol: apply Trichoderma viride enriched FYM at 50g per plant. Prevention: Use tissue culture plants from certified labs, do not plant in previously infected soil, maintain soil pH above 6.0 with lime application."
+  },
+  {
+    "id": "cd014",
+    "category": "crop_diseases",
+    "title": "Downy Mildew of Pearl Millet (Sclerospora graminicola)",
+    "content": "Downy Mildew of Pearl Millet is caused by Sclerospora graminicola and is the most devastating disease of bajra in India with yield losses up to 80%. Symptoms include chlorosis of leaves in downy patches, green ear (malformation of flowers into leafy structures), stunted growth. White cottony growth appears on lower leaf surface in humid conditions. Common in Rajasthan, Gujarat, Maharashtra. Treatment: Seed treatment with Metalaxyl 35 WS at 6g per kg seed is most effective. Spray Metalaxyl + Mancozeb at 2.5g per liter. Prevention: Use resistant hybrids like 86M86, ICTP 8203. Timely sowing at onset of monsoon. Avoid continuous pearl millet cultivation. Rogue out infected plants early."
+  },
+  {
+    "id": "cd015",
+    "category": "crop_diseases",
+    "title": "Turmeric Rhizome Rot (Pythium aphanidermatum)",
+    "content": "Turmeric Rhizome Rot is caused by Pythium aphanidermatum and results in 30-40% yield loss. Symptoms include yellowing and drooping of leaves starting from lower parts, soft watery rot of rhizomes with foul smell. Infected rhizomes turn brown internally. Disease is severe in waterlogged and poorly drained soils during monsoon season. Treatment: Drench soil with Metalaxyl + Mancozeb at 2.5g per liter or Copper oxychloride at 3g per liter around diseased plants. Apply Trichoderma harzianum enriched neem cake at 250g per plant. Prevention: Use healthy seed rhizomes, treat seed rhizomes with Mancozeb at 3g per liter for 30 minutes before planting, ensure raised beds with good drainage, apply neem cake at 2 tonnes per hectare."
+  }
+]

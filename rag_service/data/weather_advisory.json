@@ -1,0 +1,50 @@
+[
+  {
+    "id": "wa001",
+    "category": "weather_advisory",
+    "title": "Monsoon Season Farming Advisory (June-September)",
+    "content": "Monsoon season (Kharif) is the main cropping season in India. Key crops: Rice, maize, soybean, cotton, groundnut, pigeon pea, green gram, sugarcane. Pre-monsoon preparation: Complete land preparation, repair bunds, clear drainage channels, procure quality seeds and fertilizers by May-end. Sowing: Begin with onset of monsoon after receiving 50-75mm rainfall. For direct-seeded rice, sow when soil has adequate moisture. Water management: Maintain 5cm standing water in rice after transplanting, drain excess water 2 weeks before harvest. Pest vigilance: Watch for stem borer in rice, bollworm in cotton, pod borer in pulses during August-September. Apply pesticides during dry intervals. Weed management: First weeding 20-25 days after sowing. Nutrient management: Apply basal fertilizer at sowing, first top dressing at 21 days."
+  },
+  {
+    "id": "wa002",
+    "category": "weather_advisory",
+    "title": "Rabi Season Crop Planning (October-March)",
+    "content": "Rabi season starts after monsoon withdrawal (October) with crops harvested in March-April. Key crops: Wheat, chickpea, mustard, lentil, pea, potato, barley. Land preparation: Harvest kharif crop timely, do residue management (avoid burning), prepare seedbed with 2-3 ploughings. Wheat sowing: Optimal period November 1-25 in North India. Late sowing after November 25 reduces yield by 35-40 kg per hectare per day. Use varieties HD 3086, DBW 187, PBW 803 for timely sowing. For late sowing use HD 3059, PBW 752. Mustard sowing: October 10-25 in North India. Chickpea: October 15 - November 15. Irrigation: Critical stages for wheat - Crown Root Initiation (21 days), tillering (45 days), jointing (65 days), flowering (85 days), grain filling (105 days). Give at least 4-5 irrigations."
+  },
+  {
+    "id": "wa003",
+    "category": "weather_advisory",
+    "title": "Heat Wave Protection for Crops",
+    "content": "Heat waves (above 40°C) during March-June can severely damage crops, especially wheat during grain filling and summer vegetables. Protective measures: Light irrigation during heat wave period, preferably in evening or early morning. Mulching with crop residue or plastic mulch reduces soil temperature by 3-5°C. Apply Potassium Chloride foliar spray at 1% (10g per liter) to improve heat tolerance. For wheat: Advance sowing to escape terminal heat. For vegetables (tomato, chilli, capsicum): Use shade nets (35-50% shade). For mango: Apply kaolin clay spray at 5% to reduce sunburn on fruits. For nurseries: Use green shade nets and frequent misting. Avoid tillage operations during peak heat. Ensure cattle have shade and adequate water."
+  },
+  {
+    "id": "wa004",
+    "category": "weather_advisory",
+    "title": "Drought Management Strategies for Farmers",
+    "content": "Drought management requires both preparation and response strategies. Short-term measures: Reduce crop area, grow drought-tolerant varieties (C306 wheat, Sahbhagi Dhan rice, CSV 15, CSV 17 sorghum), skip non-critical irrigations. Apply anti-transpirants like Kaolin spray at 5%. Mulch heavily to conserve moisture. Medium-term: Adopt micro-irrigation (drip/sprinkler). Construct farm ponds under MGNREGA or PMKSY to store rainwater. Grow short-duration crops and drought-resistant varieties. Long-term: Build water harvesting structures, practice conservation agriculture (zero tillage, residue retention), improve soil organic matter. Government support during drought: Apply for PMFBY crop insurance claim, seek relief from District Collector. Alternate income: Consider goat rearing, poultry which need less water."
+  },
+  {
+    "id": "wa005",
+    "category": "weather_advisory",
+    "title": "Flood and Waterlogging Management in Agriculture",
+    "content": "Floods affect millions of hectares of farmland in India annually, particularly in Bihar, Assam, West Bengal, UP, and Odisha. During flood: Move livestock, farm machinery, and stored grain to higher ground. Document crop damage with photos for insurance claims. After flood: Drain excess water as quickly as possible. For rice that has been submerged less than 14 days, cut plants at 5cm above water level - they may regenerate. Apply 20 kg urea per hectare after water recedes. For permanently damaged crops: Replant with short-duration varieties (rice MDU 5, ADT 43 or toria instead of mustard). Report crop loss to Patwari within 48 hours for compensation. Apply for PMFBY insurance claim. Soil recovery: Apply lime if soil becomes acidic, add organic matter."
+  },
+  {
+    "id": "wa006",
+    "category": "weather_advisory",
+    "title": "Frost and Cold Wave Protection (December-February)",
+    "content": "Frost and cold waves affect crops in North India particularly in December-February. Most vulnerable crops: Potato, tomato, pea, papaya, mango flowers. Frost protection methods: Light irrigation in the evening before expected frost creates protective layer (water releases heat as it cools). Create smoke using moist farm waste in windward direction during early morning. Cover nurseries and young plantations with polythene or straw. Apply Sulphuric acid 0.1% spray to increase sap concentration. For potato: Earth up at 30 days to protect tubers. For mango: Avoid irrigation during flowering if frost is expected to prevent flower drop. For papaya: Wrap stem with straw up to 1.5 feet. For vegetables: Use row covers or low tunnels."
+  },
+  {
+    "id": "wa007",
+    "category": "weather_advisory",
+    "title": "Unseasonal Rain and Hailstorm Damage Management",
+    "content": "Unseasonal rains and hailstorms during March-April can devastate standing wheat, chickpea, and mustard crops ready for harvest. Immediate actions: Harvest crop immediately if it is mature enough even at higher moisture content. For lodged wheat: Use manual harvesting, combine harvesters cannot handle lodged crop. For damaged mustard and chickpea: Assess damage percentage with agriculture officer. For hail-damaged fruits (mango, litchi): Prune damaged branches, spray Copper oxychloride at 3g per liter to prevent secondary infections. Insurance: File PMFBY claim within 72 hours. Visit District Agriculture Officer for damage assessment. Government compensation: Apply for National Disaster Response Fund (NDRF) relief through village Sarpanch or Patwari. Document all damage with photographs."
+  },
+  {
+    "id": "wa008",
+    "category": "weather_advisory",
+    "title": "Summer Season Farming Advisory (March-June)",
+    "content": "Summer season offers opportunity for growing high-value crops where irrigation is available. Recommended summer crops: Moong (green gram), sunflower, summer groundnut, summer maize, cucurbits (watermelon, muskmelon, cucumber), okra. Summer moong: Sow in March after wheat harvest. Variety SML 668, IPM 02-3. Gives additional income of Rs 30,000-40,000 per hectare. Requires only 3-4 irrigations. Also improves soil nitrogen. Summer vegetables: Watermelon and muskmelon can give Rs 80,000-1,20,000 per hectare. Irrigate every 3-4 days using drip irrigation for best results. Apply mulch to conserve moisture. Summer ploughing: Deep plough empty fields to expose soil pests and break hard pan. This reduces pest and weed problems in next season by 40-60%."
+  }
+]

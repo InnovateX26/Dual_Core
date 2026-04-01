@@ -1,0 +1,62 @@
+[
+  {
+    "id": "gs001",
+    "category": "government_schemes",
+    "title": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+    "content": "PM-KISAN provides income support of Rs 6000 per year to all landholding farmer families in three equal installments of Rs 2000 each. Eligibility: All farmer families with cultivable land, regardless of size. Exclusions: Income tax payers, government employees, professionals (like doctors, engineers), institutional landholders. Registration: Online at pmkisan.gov.in or through Common Service Centre (CSC) with Aadhaar, bank account, and land records. Payment directly to bank account via Direct Benefit Transfer (DBT). eKYC through Aadhaar is mandatory. Check status: Visit pmkisan.gov.in and click 'Beneficiary Status' with Aadhaar or mobile number. Over 11 crore farmers benefit from this scheme."
+  },
+  {
+    "id": "gs002",
+    "category": "government_schemes",
+    "title": "PMFBY (Pradhan Mantri Fasal Bima Yojana)",
+    "content": "PMFBY is the government crop insurance scheme providing financial support to farmers suffering crop loss due to natural calamities, pests, and diseases. Premium rates: Kharif crops - 2% of sum insured, Rabi crops - 1.5%, Commercial/Horticultural crops - 5%. Government pays remaining premium. Coverage includes prevented sowing, standing crop damage, post-harvest losses (up to 14 days), and localized calamities. Claim process: Report crop loss within 72 hours through Crop Insurance App, CSC, or bank/insurance company. Registration through bank (for loanee farmers - automatic), CSC, or PMFBY portal for non-loanee farmers. Last date: Before sowing deadline notified for each season. Documents: Aadhaar, bank passbook, land records, sowing certificate."
+  },
+  {
+    "id": "gs003",
+    "category": "government_schemes",
+    "title": "Soil Health Card Scheme",
+    "content": "Soil Health Card Scheme provides farmers with soil health cards that carry crop-wise recommendations for nutrients and fertilizers. Cards issued every 2 years based on soil testing. The card contains information about soil nutrients: primary (N, P, K), secondary (S, Ca, Mg), and micro (Zn, Fe, Cu, Mn, B). Also shows soil pH, electrical conductivity, and organic carbon. Benefits: Helps apply correct amount of fertilizers saving money, improves crop yield by 10-15%, reduces overuse of chemicals. How to get: Contact nearest Krishi Vigyan Kendra (KVK), Agricultural Department office, or register on soilhealth.dac.gov.in. Free of cost. Farmers can also check soil health card status online using their Aadhaar or registration number."
+  },
+  {
+    "id": "gs004",
+    "category": "government_schemes",
+    "title": "Kisan Credit Card (KCC)",
+    "content": "Kisan Credit Card provides affordable credit to farmers for crop production, post-harvest expenses, maintenance of farm assets, and consumption needs. Credit limit based on land holding and crop pattern. Interest rate: 7% per annum with 3% subvention for prompt repayment (effective rate 4% for loans up to Rs 3 lakhs). Coverage: Crop production loans, working capital for allied activities (dairy, poultry, fisheries), term loans for farm equipment. Documentation: Application form, identity proof, address proof, land documents. Apply at any commercial bank, Regional Rural Bank (RRB), or cooperative bank branch. Repayment: Flexible based on crop cycle. PM-KISAN beneficiaries can apply for KCC with simplified single page form."
+  },
+  {
+    "id": "gs005",
+    "category": "government_schemes",
+    "title": "e-NAM (National Agriculture Market)",
+    "content": "e-NAM is an electronic trading portal connecting APMC mandis across India for better price discovery. Farmers can sell produce in any connected mandi across the country. Benefits: Transparent price discovery, reduced intermediaries, competitive bidding, direct payment. Over 1000 mandis connected across 18 states. How to use: Register at enam.gov.in with Aadhaar, bank details, and mobile number. Take produce to nearest e-NAM mandi, get quality tested and graded, and receive competitive bids from traders across the country. Payment received directly in bank account within 3 days. Also check market prices of different commodities across mandis. Reduces exploitation by middlemen."
+  },
+  {
+    "id": "gs006",
+    "category": "government_schemes",
+    "title": "PM Kisan Maan Dhan Yojana (Pension Scheme)",
+    "content": "PM Kisan Maan Dhan Yojana is a pension scheme for small and marginal farmers. Monthly pension of Rs 3000 after age 60. Eligibility: Small and marginal farmers aged 18-40 years with cultivable land up to 2 hectares. Monthly contribution: Rs 55 (age 18) to Rs 200 (age 40) - matched by government. Registration: Through Common Service Centre (CSC) with Aadhaar, bank account, and land records. Contribution deducted directly from PM-KISAN installments if opted. Over 22 lakh farmers enrolled. Family pension: Spouse receives 50% pension (Rs 1500 per month) after farmer's death. Cannot be combined with other pension schemes like NPS, ESIC."
+  },
+  {
+    "id": "gs007",
+    "category": "government_schemes",
+    "title": "Paramparagat Krishi Vikas Yojana (PKVY - Organic Farming)",
+    "content": "PKVY promotes organic farming through cluster-based approach. Groups of 50 farmers with 50 acres form a cluster. Financial support: Rs 50,000 per hectare over 3 years (Rs 31,000 for organic inputs, Rs 8800 for value addition and marketing, Rs 3000 for PGS certification). Covers costs for organic inputs, bio-fertilizers, bio-pesticides, vermicompost units, and marketing. Third-party certification provided under Participatory Guarantee System (PGS-India). Benefits: Premium price for organic produce through organic markets, health benefits, soil improvement. Registration: Through District Agriculture Office. Priority given to tribal, hilly, and rainfed areas. Online registration at pgsindia-ncof.gov.in."
+  },
+  {
+    "id": "gs008",
+    "category": "government_schemes",
+    "title": "Sub-Mission on Agricultural Mechanization (SMAM)",
+    "content": "SMAM provides subsidies on purchase of farm machinery and implements. Subsidy: 40-50% for small and marginal farmers, 25-40% for others on tractors, combine harvesters, rotavators, seed drills, sprayers, etc. Also supports Custom Hiring Centres (CHC) and Farm Machinery Banks. Maximum subsidy limits vary by equipment. Registration: Apply online at agrimachinery.nic.in with Aadhaar, land documents, and bank details. Selection through lottery system in many states. Subsidy directly credited to bank account after purchase from empanelled dealers. Special provision for women farmers and SC/ST farmers with higher subsidy. Documents needed: Aadhaar, land papers, bank details, caste certificate if applicable."
+  },
+  {
+    "id": "gs009",
+    "category": "government_schemes",
+    "title": "Rashtriya Krishi Vikas Yojana (RKVY-RAFTAAR)",
+    "content": "RKVY-RAFTAAR (Remunerative Approaches for Agriculture and Allied sector Rejuvenation) provides flexible support for agriculture development to states. Supports agri-business incubation, innovation, and entrepreneurship. Key components: infrastructure development (cold chains, pack houses, processing units), value chain development, Agri-startup promotion (up to Rs 25 lakhs funding). For farmers: Access to modern infrastructure, better post-harvest facilities, connection to markets. Benefits include custom hiring centres, soil testing labs, seed hubs. Apply through state agriculture department or Agri-Business Incubation centres in agricultural universities. Special focus on doubling farmer income."
+  },
+  {
+    "id": "gs010",
+    "category": "government_schemes",
+    "title": "Pradhan Mantri Krishi Sinchai Yojana (PMKSY - Irrigation)",
+    "content": "PMKSY aims to expand cultivated area under irrigation (Har Khet Ko Paani) and improve water use efficiency (Per Drop More Crop). Components: Micro irrigation (drip and sprinkler) subsidy of 55% for small/marginal farmers and 45% for others. Watershed development for rainfed areas. Accelerated Irrigation Benefit Programme for completion of irrigation projects. Benefits: Saves 40-60% water compared to flood irrigation, increases yield by 20-40%, reduces energy costs, and reduces weed growth. Apply through state agriculture/horticulture department for micro irrigation subsidy. Documents: land records, Aadhaar, bank details, quotation from empanelled micro irrigation company."
+  }
+]

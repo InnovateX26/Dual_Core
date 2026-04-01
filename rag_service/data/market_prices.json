@@ -1,0 +1,44 @@
+[
+  {
+    "id": "mp001",
+    "category": "market_prices",
+    "title": "Minimum Support Price (MSP) for Major Kharif Crops 2025-26",
+    "content": "The Government of India announces Minimum Support Price (MSP) for major crops every season. Kharif 2025-26 MSP: Paddy (Common) - Rs 2300 per quintal, Paddy (Grade A) - Rs 2320 per quintal, Jowar (Hybrid) - Rs 3371 per quintal, Bajra - Rs 2625 per quintal, Maize - Rs 2225 per quintal, Ragi - Rs 4290 per quintal, Cotton (Medium Staple) - Rs 7321 per quintal, Cotton (Long Staple) - Rs 7521 per quintal, Groundnut - Rs 6783 per quintal, Soybean (Yellow) - Rs 4892 per quintal, Sunflower - Rs 7280 per quintal, Sesamum - Rs 9267 per quintal, Niger seed - Rs 8717 per quintal, Moong - Rs 8682 per quintal, Urad - Rs 7400 per quintal, Tur/Arhar - Rs 7550 per quintal. Farmers should sell at APMC mandis or through PM-AASHA scheme if market price is below MSP."
+  },
+  {
+    "id": "mp002",
+    "category": "market_prices",
+    "title": "Minimum Support Price (MSP) for Major Rabi Crops 2025-26",
+    "content": "Rabi 2025-26 MSP announced by Government: Wheat - Rs 2425 per quintal, Barley - Rs 1980 per quintal, Gram (Chana) - Rs 5640 per quintal, Lentil (Masoor) - Rs 6425 per quintal, Rapeseed/Mustard - Rs 5950 per quintal, Safflower - Rs 5940 per quintal. The MSP is fixed at minimum 50% return over cost of production (A2+FL). Procurement: Wheat procurement done by FCI and state agencies at MSP from April. Mustard and gram procurement through NAFED under PM-AASHA scheme. To sell at MSP: Register on state procurement portal, bring produce to notified procurement center with land records and Aadhaar. Payment directly to bank account within 48-72 hours."
+  },
+  {
+    "id": "mp003",
+    "category": "market_prices",
+    "title": "APMC Mandi System and How to Get Best Price",
+    "content": "APMC (Agricultural Produce Market Committee) mandis are regulated markets where farmers sell produce through auction. Tips for getting best price: 1. Clean and grade your produce before taking to mandi - graded produce gets 10-15% higher price. 2. Check prices at multiple mandis using Agmarknet (agmarknet.gov.in) before deciding where to sell. 3. Sell during peak demand periods - avoid selling immediately after harvest when prices are lowest. 4. Store produce for 2-3 months using warehouse receipt system and sell when prices improve. 5. Use e-NAM platform to access buyers from distant mandis. 6. Form Farmer Producer Organizations (FPOs) to negotiate better prices collectively. 7. Consider direct selling to food processing units or through farmer markets. Mandi charges: Commission 1-2.5% varying by state plus cess and weighing charges."
+  },
+  {
+    "id": "mp004",
+    "category": "market_prices",
+    "title": "Warehouse Receipt Based Selling and Price Strategies",
+    "content": "Warehouse Receipt System allows farmers to store produce in certified warehouses and sell later when prices improve. How it works: Deposit produce at WDRA-registered warehouse, receive Negotiable Warehouse Receipt (NWR). Avail up to 70% loan on NWR from banks at 7% interest. Sell when market price is favorable. Storage fee: Rs 3-8 per quintal per month depending on commodity. Benefits: Avoids distress selling, gets loan for immediate needs, sells at better price later. Typical price improvement: Wheat prices increase by Rs 200-400 per quintal from May (harvest) to November. Rice prices improve by Rs 300-500 per quintal. Pulses can see Rs 1000-2000 improvement. Find nearest warehouse at wdra.gov.in. Storage duration supported: up to 12 months for food grains."
+  },
+  {
+    "id": "mp005",
+    "category": "market_prices",
+    "title": "Vegetable and Fruit Market Price Strategies",
+    "content": "Vegetable and fruit prices are highly volatile with seasonal variations. Key strategies: 1. Staggered planting: Sow in batches every 15-20 days to have continuous harvest and market supply. 2. Off-season cultivation: Grow vegetables in polyhouse/shade net during off-season for 3-5x higher prices. Example: Tomato in summer polytunnel fetches Rs 40-60/kg vs Rs 5-10/kg in season. 3. Value addition: Make tomato paste, pickle, dried vegetables for shelf life and better margins. 4. Contract farming: Supply to companies like ITC, Reliance Fresh for assured prices. 5. Direct selling: Farmers markets, apartment complexes, online platforms (DeHaat, BigHaat, Ninjacart). 6. Cold storage: Short-term storage (2-4 weeks) for vegetables like potato, onion, cauliflower. Onion prices typically rise from Rs 10/kg at harvest to Rs 40-60/kg in off-season. 7. Grade and pack attractively for retail premium."
+  },
+  {
+    "id": "mp006",
+    "category": "market_prices",
+    "title": "Farmer Producer Organizations (FPOs) for Better Market Access",
+    "content": "Farmer Producer Organizations (FPOs) are companies formed by farmer members to collectively market their produce. Benefits: Better price negotiation (10-20% higher than individual selling), bulk purchase of inputs at lower cost, access to processing and value addition, direct market linkages. Government support: Rs 18 lakh per FPO from formation to maturity. 10,000 new FPOs being formed under central scheme. Equity grant of Rs 15 lakh and credit guarantee up to Rs 2 crore. How to form: Minimum 300 farmer members (100 in hilly areas). Register as Producer Company under Companies Act. Get support from implementing agencies like NABARD, SFAC, NCDC. Successful FPO examples: Sahyadri Farms (Maharashtra) - Rs 1000 crore turnover, Vasundhara Agri-Horti Producer Company (Rajasthan). Apply through nabard.org or sfacindia.com."
+  },
+  {
+    "id": "mp007",
+    "category": "market_prices",
+    "title": "Organic Produce Marketing and Premium Pricing",
+    "content": "Organic produce commands 20-50% premium over conventional produce in Indian markets. Certification options: PGS-India (free, group certification for domestic market), NPOP certification (for export, costs Rs 30,000-50,000/year through accredited agencies). Where to sell organic produce: 1. Organic farmer markets (Jaivik Kheti portals): Register on jaivikkheti.in. 2. Direct to consumer through weekly organic bazaars. 3. Online platforms: BigBasket organic, Amazon organic, Organic Tattva. 4. Export: Through registered exporters (India is 8th largest organic exporter). 5. Direct supply to organic stores, restaurants, and hotels. Key organic crops with best premium: Basmati rice (30-40% premium), spices (turmeric - 40-60% premium), pulses (20-30% premium), fruits and vegetables (30-50% premium). Transition period: 2-3 years of chemical-free farming needed before full organic certification."
+  }
+]

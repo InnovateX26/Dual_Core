@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ft001",
+    "category": "fertilizers",
+    "title": "Urea (46% Nitrogen)",
+    "content": "Urea is the most widely used nitrogen fertilizer in Indian agriculture containing 46% nitrogen. It is white granular and highly soluble in water. Best for cereals like rice, wheat, maize, and sugarcane. Application rate: Rice - 80-120 kg per hectare, Wheat - 120-150 kg per hectare. Apply in 2-3 split doses: 1/3 at sowing, 1/3 at tillering, 1/3 at panicle initiation. Do not apply urea during standing water as it causes gaseous losses. Neem coated urea reduces nitrogen loss by 15-20% and is recommended. Price: approximately Rs 266 per 45 kg bag (subsidized). Excess urea causes lodging and pest problems. Always combine with potash and phosphorus for balanced nutrition."
+  },
+  {
+    "id": "ft002",
+    "category": "fertilizers",
+    "title": "DAP (Diammonium Phosphate)",
+    "content": "DAP is the most popular phosphatic fertilizer in India containing 18% Nitrogen and 46% Phosphorus (P2O5). Dark brown to black granules. Essential for root development, flowering, and grain formation. Best applied as basal dose at sowing. Application rate: Rice - 100 kg per hectare, Wheat - 100-130 kg per hectare, Pulses - 80-100 kg per hectare. Should be placed 5-7 cm deep near the seed zone for best results. Price: approximately Rs 1350 per 50 kg bag (subsidized). Not recommended for alkaline soils with pH above 8.5 as phosphorus becomes unavailable. In such soils use Single Super Phosphate (SSP) instead."
+  },
+  {
+    "id": "ft003",
+    "category": "fertilizers",
+    "title": "Muriate of Potash (MOP - 60% K2O)",
+    "content": "Muriate of Potash (MOP) contains 60% potash (K2O) essential for disease resistance, drought tolerance, and grain quality. White to reddish crystals. Critical for fruiting crops like potato, banana, sugarcane, and coconut. Application: Potato - 120-150 kg per hectare at planting, Banana - 200-300g per plant in splits, Sugarcane - 80-100 kg per hectare. Apply as basal dose or in split doses. Price: approximately Rs 850 per 50 kg bag. Potash deficiency symptoms: browning of leaf tips and margins, weak stems, poor fruit quality. Important: Indian soils are becoming potash deficient due to neglected K application. Always use based on soil test recommendations."
+  },
+  {
+    "id": "ft004",
+    "category": "fertilizers",
+    "title": "NPK Complex Fertilizers (Various grades)",
+    "content": "NPK complex fertilizers provide all three major nutrients in a single application. Common grades in India: 10-26-26 (for pulses and oilseeds), 12-32-16 (for cereals), 20-20-0 (for vegetables), 15-15-15 (general purpose). Benefits: balanced nutrition, saves labor, reduces over-application of single nutrients. Application: Apply as basal dose at sowing. Rate depends on crop: Rice - 150-200 kg 12-32-16 per hectare, Vegetables - 200-250 kg 19-19-19 per hectare. Always supplement with urea top dressing as NPK complexes alone may not provide enough nitrogen. Price: Rs 1100-1400 per 50 kg bag depending on grade."
+  },
+  {
+    "id": "ft005",
+    "category": "fertilizers",
+    "title": "Vermicompost (Organic Fertilizer)",
+    "content": "Vermicompost is organic manure produced by earthworms (Eisenia fetida) from agricultural waste. Contains 1.5-2% N, 0.5-1% P, 0.5-1% K plus micronutrients and beneficial microbes. Improves soil structure, water retention, and microbial activity. Application: 2-5 tonnes per hectare as basal dose. For vegetables use 5 tonnes per hectare. Can be made at farm level using cow dung, crop residue, and kitchen waste. Process takes 60-90 days. Cost: Rs 5-10 per kg retail, almost free if made at home. Benefits: Reduces chemical fertilizer requirement by 25-50%, improves soil health long term, increases disease resistance. Recommended under National Mission for Sustainable Agriculture scheme."
+  },
+  {
+    "id": "ft006",
+    "category": "fertilizers",
+    "title": "Single Super Phosphate (SSP - 16% P2O5)",
+    "content": "Single Super Phosphate contains 16% Phosphorus and 11% Sulphur making it ideal for oilseeds and pulses that need sulphur. Gray powder or granules with characteristic smell. Better than DAP for acidic and neutral soils. Cheaper alternative to DAP. Application: 250-375 kg per hectare as basal dose. Best for groundnut (250 kg/ha), soybean (375 kg/ha), mustard (250 kg/ha). Mix with FYM for better results. Price: approximately Rs 450-500 per 50 kg bag. Advantage over DAP: provides sulphur which is increasingly deficient in Indian soils. Disadvantage: lower concentration means higher bulk to handle."
+  },
+  {
+    "id": "ft007",
+    "category": "fertilizers",
+    "title": "Zinc Sulphate (ZnSO4 - Micronutrient)",
+    "content": "Zinc Sulphate (Heptahydrate 21% Zn or Monohydrate 33% Zn) is the most important micronutrient fertilizer for Indian rice and wheat crops. Over 50% of Indian soils are zinc deficient. Zinc deficiency symptoms: stunted growth, light brown spots on leaves, delayed maturity. Application: Soil application - 25 kg ZnSO4 Heptahydrate per hectare as basal dose. Foliar spray - 0.5% solution (5g per liter) at tillering and flowering stages. Critical for: Rice (most responsive), wheat, maize, cotton. Price: Rs 40-60 per kg. Apply every alternate season in zinc-deficient soils. Combine with organic matter for better zinc availability."
+  },
+  {
+    "id": "ft008",
+    "category": "fertilizers",
+    "title": "Neem Cake (Organic Pest Repellent Fertilizer)",
+    "content": "Neem Cake is the residue left after extracting neem oil from seeds. Contains 5% N, 1% P, 1.5% K plus natural pest repellent compounds (azadirachtin). Dual benefit: provides nutrients and controls soil-borne pests like nematodes, white grubs, and termites. Application: 250-500 kg per hectare as basal, mix with soil before sowing. Excellent for sugarcane, banana, turmeric, vegetables. Also use as a coating for urea: mix neem cake with urea in 1:5 ratio to slow nitrogen release. Price: Rs 15-25 per kg. Approved for organic farming. Reduces use of chemical pesticides for soil pests."
+  },
+  {
+    "id": "ft009",
+    "category": "fertilizers",
+    "title": "Biofertilizers (Rhizobium, Azotobacter, PSB)",
+    "content": "Biofertilizers are living microorganism formulations that fix atmospheric nitrogen or make phosphorus available to plants. Three main types: Rhizobium - for legumes (pulses, groundnut, soybean) fixes 50-100 kg N per hectare. Azotobacter - for cereals and vegetables, fixes 20-40 kg N per hectare. PSB (Phosphate Solubilizing Bacteria) - makes soil phosphorus available, equivalent to 30 kg P2O5 per hectare. Application: Seed treatment at 200g per 10 kg seeds using jaggery solution as adhesive. Soil application: 2-5 kg per hectare mixed with 50 kg FYM. Price: Rs 50-100 per packet (200g). Can reduce chemical fertilizer use by 25%. Available at Krishi Vigyan Kendras."
+  },
+  {
+    "id": "ft010",
+    "category": "fertilizers",
+    "title": "Gypsum (Calcium Sulphate - Soil Amendment)",
+    "content": "Gypsum (CaSO4.2H2O) contains 23% Calcium and 17% Sulphur. Used primarily as soil amendment for sodic and alkaline soils. Also excellent as sulphur source for groundnut. Application: For sodic soil reclamation - 5-10 tonnes per hectare based on soil test. For groundnut - 200-400 kg per hectare at pegging stage for better pod filling. For general sulphur nutrition - 200 kg per hectare. Price: Rs 1-3 per kg. Available at government fertilizer outlets. Gypsum improves soil structure, reduces soil pH, and improves water infiltration in clay soils. Apply before monsoon season for soil reclamation."
+  }
+]
